@@ -59,6 +59,7 @@ class App extends Component {
   }
 
   editProduct = UserID => {
+
     console.log(UserID)
 
     const apiUrl = 'http://localhost/ScadaClient/api/userdetail?userid='+UserID;
