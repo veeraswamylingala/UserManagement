@@ -27,7 +27,7 @@ class addUser extends React.Component {
             RMID: "",
             Emperror: "",
             Reportingerror: "",
-            Usererror: "",
+            Usererror: null,
             add: {
 
                 FirstName: '',
@@ -279,17 +279,37 @@ class addUser extends React.Component {
             var { validUser, validRM, validEmp } = this.handleVAlidations();
             console.log(validRM)
             console.log(validUser)
+            if (!validUser || !validRM || !validEmp){
+                alert("From has a Error")
+
+            }
 
             if (!validUser) {
-                alert("Usernamame should be unique");
+                
+                this.setState({
+
+                    Usererror:" * UserName Should Be unique"
+                },()=>{
+                    
+                })
 
             }
 
             if (!validRM) {
-                alert("Not a valid reporting manager");
+                this.setState({
+
+                    Reportingerror:" * Not Valid Reporting Manager"
+                },()=>{
+                    
+                })
             }
             if (!validEmp) {
-                alert("Employee code should be unique");
+                this.setState({
+
+                    Emperror:" * Employee Code should Be Unique"
+                },()=>{
+                    
+                })
             }
             if (validUser && validRM && validEmp)
                  {
@@ -318,7 +338,7 @@ class addUser extends React.Component {
 
         }
            
-       alert("sdgjagfjs")
+       
     }
 
 
@@ -378,6 +398,7 @@ class addUser extends React.Component {
                                                 <input type="text" style={{ width: "50%" }} size="30" required maxLength="35" autoComplete="off"
                                                     className="form-control" name="LastName" value={this.state.add.LastName} onChange={this.changeHandler} />
 
+
                                             </div>
                                         </div>
                                         <div class="col-sm-6 col-md-6">
@@ -385,7 +406,7 @@ class addUser extends React.Component {
                                                 <label class="form-label" style={{ color: "black" }}>Employee Code <span style={{ fontWeight: "bold", color: "red" }} >*</span></label>
                                                 <input type="text" style={{ width: "50%" }} autoComplete="off" size="10" required maxLength="15"
                                                     className="form-control" name="EmpCode" value={this.state.add.EmpCode} onChange={this.changeHandler} />
-                                                <span>{this.state.Emperror}</span>
+                                                <span style={{ fontWeight: "", color: "red" }}>{this.state.Emperror}</span>
                                             </div>
                                         </div>
 
@@ -475,7 +496,7 @@ class addUser extends React.Component {
                                                 <Hint options={this.state.setHintData} allowDropDown>
                                                     <input type="text" style={{ width: "50%" }} maxLength="30" autoComplete="off"
                                                         className="form-control" size="30" name="ReportingManager" value={this.state.add.ReportingManager} onChange={this.changeHandler} /></Hint>
-                                                <span>{this.state.Reportingerror}</span>
+                                                <span style={{ fontWeight: "", color: "red" }}>{this.state.Reportingerror}</span>
                                             </div>
                                         </div>
       
@@ -485,7 +506,7 @@ class addUser extends React.Component {
                                                 <label class="form-label" style={{ color: "black" }}>Username <span style={{ fontWeight: "bold", color: "red" }} >*</span></label>
                                                 <input type="text" required maxLength="30" style={{ width: "50%" }}
                                                     className="form-control" size="30" name="UserName" value={this.state.add.UserName} onChange={this.changeHandler} />
-                                                <span>{this.state.Usererror}</span>
+                                                <span style={{ fontWeight: "", color: "red" }}>{this.state.Usererror}</span>
                                             </div>
                                         </div>
                                         <div class="col-sm-6 col-md-6">
