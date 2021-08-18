@@ -357,14 +357,10 @@ class addUser extends React.Component {
     render() {
         return (
             <body className="font-montserrat">
-                <div>
-
-
-                    <div>
-
+            
                         <div className="page">
-
-                            <div className="section-body">
+                        <div className="card-body">
+                            <div>
 
 
                                 <ul class="nav nav-tabs page-header-tab">
@@ -380,20 +376,20 @@ class addUser extends React.Component {
                             {/* <div className="center">
          <h3 className="card-title"  style = {{fontSize:"20px", fontWeight:"bold"}}>Add User</h3>
 
-</div>   */}
+</div>   */}        <div className="" >
                             <form onSubmit={this.submitHandler} >
-                                <div class="card-body" class="container" style={{ maxWidth: '', marginLeft: "", background: '', borderRadius: '' }}><br />
-                                    <div class="row clearfix">
-                                        <div class="col-sm-6 col-md-6">
-                                            <div class="form-group" style={{ marginLeft: "30px" }}>
+                                <div   style={{ }}><br />
+                                    <div class="row ">
+                                        <div class="col-sm-4 col-md-4">
+                                            <div class="form-group" style={{  }}>
                                                 <label class="form-label" style={{ color: "black" }}>First Name <span style={{ fontWeight: "bold", color: "red" }} >*</span></label>
                                                 <input type="text" style={{ width: "50%" }} size="30" name="FirstName" required className="form-control"
                                                     maxLength="35" value={this.state.add.FirstName} onChange={this.changeHandler} />
 
                                             </div>
                                         </div>
-                                        <div class="col-sm-6 col-md-6">
-                                            <div class="form-group" style={{ marginLeft: "30px" }}>
+                                        <div class="col-sm-4 col-md-4">
+                                            <div class="form-group" style={{  }}>
                                                 <label class="form-label" style={{ color: "black" }}>Last Name <span style={{ fontWeight: "bold", color: "red" }} >*</span></label>
                                                 <input type="text" style={{ width: "50%" }} size="30" required maxLength="35" autoComplete="off"
                                                     className="form-control" name="LastName" value={this.state.add.LastName} onChange={this.changeHandler} />
@@ -401,8 +397,8 @@ class addUser extends React.Component {
 
                                             </div>
                                         </div>
-                                        <div class="col-sm-6 col-md-6">
-                                            <div class="form-group" style={{ marginLeft: "30px" }}>
+                                        <div class="col-sm-4 col-md-4">
+                                            <div class="form-group" style={{  }}>
                                                 <label class="form-label" style={{ color: "black" }}>Employee Code <span style={{ fontWeight: "bold", color: "red" }} >*</span></label>
                                                 <input type="text" style={{ width: "50%" }} autoComplete="off" size="10" required maxLength="15"
                                                     className="form-control" name="EmpCode" value={this.state.add.EmpCode} onChange={this.changeHandler} />
@@ -411,8 +407,8 @@ class addUser extends React.Component {
                                         </div>
 
 
-                                        <div class="col-sm-6 col-md-6">
-                                            <div class="form-group" style={{ marginLeft: "30px" }}>
+                                        <div class="col-sm-4 col-md-4">
+                                            <div class="form-group" style={{  }}>
                                                 <label class="form-label" style={{ color: "black" }}>Designation</label>
                                                 <select name="RoleID"
                                                     className="form-control" style={{ width: "50%" }} value={this.state.add.RoleID} onChange={this.changeHandler}>
@@ -423,8 +419,8 @@ class addUser extends React.Component {
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-sm-6 col-md-6">
-                                            <div class="form-group" style={{ marginLeft: "30px" }}>
+                                        <div class="col-sm-4 col-md-4">
+                                            <div class="form-group" style={{  }}>
                                                 <div onChange={this.setGender.bind(this)} style={{ color: "black" }}>
                                                     <label class="form-label" >Gender</label>
                                                     {/* <input type="text" name="Gender" value={this.state.add.Gender} onChange={this.changeHandler}/> */}
@@ -435,8 +431,8 @@ class addUser extends React.Component {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-6 col-md-6">
-                                            <div class="form-group" style={{ marginLeft: "30px" }}>
+                                        <div class="col-sm-4 col-md-4">
+                                            <div class="form-group" style={{  }}>
                                                 <div onChange={this.setStatus.bind(this)} style={{ color: "black" }}>
                                                     <label class="form-label"> Status </label>
                                                     {/* <input type="text" name="PhoneNumber" value={this.state.add.Company} onChange={this.changeHandler}/>  */}
@@ -449,8 +445,8 @@ class addUser extends React.Component {
                                             </div>
                                         </div>
 
-                                        <div class="col-sm-6 col-md-6">
-                                            <div class="form-group" style={{ marginLeft: "30px" }}>
+                                        <div class="col-sm-4 col-md-4">
+                                            <div class="form-group" style={{  }}>
                                                 <label class="form-label" style={{ color: "black" }}>Date of Birth</label>
                                                 
                                                 <DatePicker
@@ -465,16 +461,16 @@ class addUser extends React.Component {
 
                                             </div>
                                         </div>
-                                        <div class="col-sm-6 col-md-6">
-                                            <div class="form-group" style={{ marginLeft: "30px" }}>
+                                        <div class="col-sm-4 col-md-4">
+                                            <div class="form-group" style={{  }}>
                                                 <label class="form-label" style={{ color: "black" }}>Mobile Number <span style={{ fontWeight: "bold", color: "red" }} >*</span></label>
                                                 <input type="text" required maxLength="10" style={{ width: "50%" }}
                                                     className="form-control" size="10" name="Mobile" value={this.state.add.Mobile} onChange={this.changeHandler} />
 
                                             </div>
                                         </div>
-                                        <div class="col-sm-6 col-md-6">
-                                            <div class="form-group" style={{ marginLeft: "30px" }}>
+                                        <div class="col-sm-4 col-md-4">
+                                            <div class="form-group" style={{  }}>
                                                 <label class="form-label" style={{ color: "black" }}>Extn. No</label>
                                                 <input type="text" maxLength="10" style={{ width: "50%" }}
                                                     className="form-control" size="10" name="AlternatePhone" value={this.state.add.AlternatePhone} onChange={this.changeHandler} />
@@ -482,16 +478,16 @@ class addUser extends React.Component {
                                             </div>
                                         </div>
 
-                                        <div class="col-sm-6 col-md-6">
-                                            <div class="form-group" style={{ marginLeft: "30px" }}>
+                                        <div class="col-sm-4 col-md-4">
+                                            <div class="form-group" style={{  }}>
                                                 <label class="form-label" style={{ color: "black" }}>Department</label>
                                                 <input type="text" style={{ width: "50%" }} maxLength="30"
                                                     className="form-control" size="30" name="Department" value={this.state.add.Department} onChange={this.changeHandler} />
 
                                             </div>
                                         </div>
-                                        <div class="col-sm-6 col-md-6">
-                                            <div class="form-group" style={{ marginLeft: "30px" }}>
+                                        <div class="col-sm-4 col-md-4">
+                                            <div class="form-group" style={{  }}>
                                                 <label class="form-label" style={{ color: "black" }}>Reporting Manager <span style={{ fontWeight: "bold", color: "red" }} >*</span></label>
                                                 <Hint options={this.state.setHintData} allowDropDown>
                                                     <input type="text" style={{ width: "50%" }} maxLength="30" autoComplete="off"
@@ -501,24 +497,24 @@ class addUser extends React.Component {
                                         </div>
       
 
-                                        <div class="col-sm-6 col-md-6">
-                                            <div class="form-group" style={{ marginLeft: "30px" }}>
+                                        <div class="col-sm-4 col-md-4">
+                                            <div class="form-group" style={{  }}>
                                                 <label class="form-label" style={{ color: "black" }}>Username <span style={{ fontWeight: "bold", color: "red" }} >*</span></label>
                                                 <input type="text" required maxLength="30" style={{ width: "50%" }}
                                                     className="form-control" size="30" name="UserName" value={this.state.add.UserName} onChange={this.changeHandler} />
                                                 <span style={{ fontWeight: "", color: "red" }}>{this.state.Usererror}</span>
                                             </div>
                                         </div>
-                                        <div class="col-sm-6 col-md-6">
-                                            <div class="form-group" style={{ marginLeft: "30px" }}>
+                                        <div class="col-sm-4 col-md-4">
+                                            <div class="form-group" style={{  }}>
                                                 <label class="form-label" style={{ color: "black" }}>Password <span style={{ fontWeight: "bold", color: "red" }} >*</span></label>
                                                 <input type="text" name="Password" style={{ width: "50%" }} required minLength={8} maxLength={20}
                                                     className="form-control" value={this.state.add.Password} type="Password" onChange={this.changeHandler} />
 
                                             </div>
                                         </div>
-                                        <div class="col-sm-6 col-md-6">
-                                            <div class="form-group" style={{ marginLeft: "30px" }}>
+                                        <div class="col-sm-4 col-md-4">
+                                            <div class="form-group" style={{  }}>
                                                 <label class="form-label" style={{ color: "black" }}>Email ID</label>
                                                 <input type="email" style={{ width: "50%" }} className="form-control" maxLength="20" name="EmailID" value={this.state.add.EmailID} onChange={this.changeHandler} />
 
@@ -526,12 +522,12 @@ class addUser extends React.Component {
                                         </div>
 
 
-                                        <div class="col-sm-6 col-md-6">
-                                            <div class="form-group" style={{ marginLeft: "30px" }} >
-                                                <label class="form-label" style={{ marginLeft: "0px", color: "black" }}>Date of Joining</label>
+                                        <div class="col-sm-4 col-md-4">
+                                            <div class="form-group" style={{  }} >
+                                                <label class="form-label" style={{ color: "black" }}>Date of Joining</label>
                                                 <DatePicker
                                                     wrapperClassName="datepicker"
-                                                    style={{ marginLeft: "30px" }}
+                                                    style={{  }}
                                                     className="form-control"
                                                     autoComplete="off"
                                                     selected={this.state.add.DateofJoining}
@@ -541,8 +537,8 @@ class addUser extends React.Component {
                                                 />
                                             </div>
                                         </div>
-                                        <div class="col-sm-6 col-md-6">
-                                            <div class="form-group" style={{ marginLeft: "30px" }}>
+                                        <div class="col-sm-4 col-md-4">
+                                            <div class="form-group" style={{  }}>
                                                 <label class="form-label" style={{ color: "black" }}>Address</label>
                                                 <textarea type="text" required style={{ width: "50%" }}
                                                     className="form-control" rows="2" cols="50" name="Address" value={this.state.add.Address} onChange={this.changeHandler} />
@@ -552,23 +548,24 @@ class addUser extends React.Component {
                                         <br />
                                         <br />
                                         <br />
+                                    
 
-                                        <div className="center" >
+                                        <div >
 
-                                            <button className="btn btn-primary" type="submit" style={{ width: "11%", marginRight: "50px", marginTop: "3px", height: "50%", background: "blue" }}> Save</button>
+                                            <button className="btn btn-primary" type="submit" style={{  background: "blue" }}> Save</button>
                                             
-                                            <Link to={{ pathname: './Viewuser' }}> <button className="btn btn-info" style={{ width: "11%", height: "52%", marginRight: "50px", background: "blue" }} >Back</button></Link>
+                                            <Link to={{ pathname: './Viewuser' }}> <button className="btn btn-info" style={{   background: "blue" }} >Back</button></Link>
                                         </div>
 
                                         <br />
-                                        <br />
-                                        <br />
+                                        
                                     </div>
                                 </div>
                             </form>
-                        </div>
+                            </div>
                     </div>
-                </div>
+                        </div>
+                 
             </body>
         )
     }

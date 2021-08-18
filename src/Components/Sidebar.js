@@ -142,15 +142,15 @@ UpdateReport()
         return(
 
 
-    <body  >
+    
         <div className="page">
-                    <div id="page_top" className="section-body top_dark">
+                    <div  className="section-body top_dark">
         
                         <div className="page-header">
                             <div className="left">
                             <Link className="icon menu_toggle mr-3"><i className="fa  fa-align-left"></i></Link>
                             {this.state.data} 
-                            <h1 className="page-title"></h1>                        
+                                                 
                             </div>
                         <div className="right">
                             <div className="notification d-flex">
@@ -228,7 +228,7 @@ UpdateReport()
 
        
 
-    </body>
+    
         )
     }
 }
