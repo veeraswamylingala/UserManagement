@@ -8,11 +8,7 @@ import axios from "axios";
 import "./styles.css";
 import * as moment from 'moment';
 
-
-
-
 class addUser extends React.Component {
-
 
     constructor(props) {
         super(props);

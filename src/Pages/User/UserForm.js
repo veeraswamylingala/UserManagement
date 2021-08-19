@@ -198,6 +198,7 @@ class EditUser extends React.Component {
             DateofRelieving: DateofRelieving,
 
         });
+        
     }
     handleChange2 = DateofJoining => {
         console.log('onchange called....')
@@ -223,14 +224,14 @@ class EditUser extends React.Component {
         window.location.reload()
     }
     render() {
-
+        console.log(this.state.DateofRelieving)
         this.state.DateofRelieving = new Date(this.state.DateofRelieving)
-        console.log(new Date(this.state.DateofRelieving))
+        console.log(this.state.DateofRelieving)
         console.log(this.state.DateofRelieving)
         var DateofRelieving = <DatePicker
             time={false} dateFormat="MMMM d, yyyy"
             onChange={this.handleChange1}
-            selected={this.state.DateofRelieving}
+            selected={this.state.DateofRelieving=="Mon Jan 01 1900 00:00:00 GMT+0521 (India Standard Time)"?null:this.state.DateofRelieving}
             className="form-control" />
 
         this.state.DateofJoining = new Date(this.state.DateofJoining)
