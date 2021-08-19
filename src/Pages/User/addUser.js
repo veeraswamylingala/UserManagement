@@ -376,11 +376,11 @@ class addUser extends React.Component {
                             {/* <div className="center">
          <h3 className="card-title"  style = {{fontSize:"20px", fontWeight:"bold"}}>Add User</h3>
 
-</div>   */}        <div className="" >
+</div>   */}        <div className="section-body" >
                             <form onSubmit={this.submitHandler} >
-                                <div   style={{ }}><br />
-                                    <div class="row ">
-                                        <div class="col-sm-4 col-md-4">
+                                <div class="position-relative"><br />
+                                    <div class="row " >
+                                        <div class="col-sm-2 col-md-4" >
                                             <div class="form-group" style={{  }}>
                                                 <label class="form-label" style={{ color: "black" }}>First Name <span style={{ fontWeight: "bold", color: "red" }} >*</span></label>
                                                 <input type="text" style={{ width: "50%" }} size="30" name="FirstName" required className="form-control"
@@ -545,22 +545,16 @@ class addUser extends React.Component {
 
                                             </div>
                                         </div>
-                                        <br />
-                                        <br />
-                                        <br />
-                                    
-
-                                        <div >
-
-                                            <button className="btn btn-primary" type="submit" style={{  background: "blue" }}> Save</button>
-                                            
-                                            <Link to={{ pathname: './Viewuser' }}> <button className="btn btn-info" style={{   background: "blue" }} >Back</button></Link>
-                                        </div>
-
-                                        <br />
-                                        
+                                       
+                                 
                                     </div>
                                 </div>
+                                <div  className="center">
+
+<button className="btn btn-primary" type="submit" style={{  background: "blue" }}> Save</button>
+
+<Link to={{ pathname: './Viewuser' }}> <button className="btn btn-info" style={{   background: "blue" }} >Back</button></Link>
+</div>
                             </form>
                             </div>
                     </div>
