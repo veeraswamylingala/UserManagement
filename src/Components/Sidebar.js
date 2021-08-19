@@ -108,7 +108,7 @@ UpdateViewMap()
 {
     this.setState({data: 'Assign Users to Project'});
     this.UpdateViewMap = this.UpdateViewMap.bind(this);
-   window.location.assign("MapUserList");
+   window.location.assign("AssignUserToProjectsList");
   
 }
 
@@ -180,8 +180,8 @@ UpdateReport()
                                 <Link  onClick = {this.UpdateViewUser} href="ViewProject" class="nav-link icon app_file xs-hide"><i className="fa fa-eye"  data-toggle="tooltip" data-placement="right" title="Users List"></i></Link >
                                 <Link  onClick = {this.updateAddProject} to='/AddProject' class="nav-link icon app_inbox xs-hide"><i className="fa fa-plus"  data-toggle="tooltip" data-placement="right" title="Add Project"></i></Link >
                                 <Link  onClick = {this.UpdateViewProject} href='ViewProject' class="nav-link icon xs-hide"><i className="fa fa-eye"  data-toggle="tooltip" data-placement="right" title="Projects List"></i></Link >
-                                <Link  onClick = {this.UpdateMap} to='/Map' class="nav-link icon app_file xs-hide"><i className="fa fa-eye"  data-toggle="tooltip" data-placement="right" title="Assign Users to Project"></i></Link >
-                                <Link onClick = {this.UpdateViewMap} href='MapUserList' class="nav-link icon app_file xs-hide"><i className="fa fa-eye"  data-toggle="tooltip" data-placement="right" title="Assign Users to Projects List"></i></Link >
+                                <Link  onClick = {this.UpdateMap} to='/AssignUserstoProject' class="nav-link icon app_file xs-hide"><i className="fa fa-eye"  data-toggle="tooltip" data-placement="right" title="Assign Users to Project"></i></Link >
+                                <Link onClick = {this.UpdateViewMap} href='AssignUserToProjectsList' class="nav-link icon app_file xs-hide"><i className="fa fa-eye"  data-toggle="tooltip" data-placement="right" title="Assign Users to Projects List"></i></Link >
                                 <Link  onClick = {this.UpdateChangePassword} to='/ChangePassword' class="nav-link icon app_file xs-hide"><i className="fa fa-key"  data-toggle="tooltip" data-placement="right" title="Change Password"></i></Link >
                                 {/* <Link  onClick = {this.UpdateXml} to='/AddXml' class="nav-link icon app_file xs-hide"><i className="fa fa-key"  data-toggle="tooltip" data-placement="right" title="AddXml"></i></Link > */}
                                 <Link  onClick = {this.UpdateReport} to='/Download' class="nav-link icon app_file xs-hide"><i className="fa fa-key"  data-toggle="tooltip" data-placement="right" title="Reports"></i></Link >
@@ -208,8 +208,8 @@ UpdateReport()
                             <li><Link href="ViewUser"  onClick = {this.UpdateViewUser}><i className="fa fa-user"></i><span>Users List</span></Link></li>
                             <li><Link onClick = {this.updateAddProject} to="/AddProject" ><i className="fa fa-plus"></i><span>Add Project</span></Link></li>
                             <li><Link onClick = {this.UpdateViewProject} to="/viewProject" ><i className="fa fa-plus"></i><span>View Project</span></Link></li> 
-                            <li><Link to ="/Map" onClick = {this.UpdateMap}><i className="fa fa-user"></i><span>Assign Users to Project</span></Link> </li> 
-                            <li><Link href="MapUserList"  onClick = {this.UpdateViewMap}><i className="fa fa-user"></i><span>Assign Users to Projects List</span></Link></li>
+                            <li><Link to ="/AssignUserstoProject" onClick = {this.UpdateMap}><i className="fa fa-user"></i><span>Assign Users to Project</span></Link> </li> 
+                            <li><Link href="AssignUserToProjectsList"  onClick = {this.UpdateViewMap}><i className="fa fa-user"></i><span>Assign Users to Projects List</span></Link></li>
                             <li><Link to="/ChangePassword"  onClick = {this.UpdateChangePassword}><i className="fa fa-key"></i><span>Change Password</span></Link></li>
                             {/* <li><Link to="/AddXml"  onClick = {this.UpdateXml}><i className="fa fa-key"></i><span>Add Xml</span></Link></li> */}
                             <li><Link to="/Download"  onClick = {this.UpdateReport}><i className="fa fa-key"></i><span>Report</span></Link></li>

@@ -15,13 +15,13 @@ import adminDashboard from './Pages/adminDashboard';
 import viewClient from './Pages/viewClient';
 import Sidebar from './Components/Sidebar'; 
 import ForgotPassword from './Pages/ForgotPassword';
-import Map from './Pages/MapUser/Map';
-import viewMap from './Pages/MapUser/viewMap'
+import AssignUserstoProject from './Pages/AssignUserstoProjects/AssignUserstoProject';
+// import viewMap from './Pages/MapUser/viewMap'
 import ChangePassword from './Pages/ChangePassword';
 import Model4 from './Pages/Model4';
 import Model2 from './Pages/Model2';
-import UserList from './Pages/MapUser/MapUserList';
-import EditUser from "./Pages/MapUser/EditUser";
+import AssignUserToProjectsList from './Pages/AssignUserstoProjects/AssignUserToProjectsList';
+import EditAssignUsersToProjects from "./Pages/AssignUserstoProjects/EditAssignUsersToProjects";
 import {BrowserRouter as Router ,Route, Switch} from 'react-router-dom';
 import AddXml from "./Pages/AddXml";
 import Download from "./Pages/Report"
@@ -86,10 +86,10 @@ class App extends React.Component {
         <Route exact path="/adminDashboard" component={adminDashboard}/>
         <Route exact path="/viewProject" component={viewProject}/>
         <Route exact path="/ProjectList" component={ProjectList}/>
-        <Route exact path="/Map" component={Map}/>
-        <Route exact path="/MapUserList" component={UserList }/> 
-        <Route exact path="/EditUser" component={EditUser}/> 
-        <Route exact path="/viewMap" component={viewMap}/>
+        <Route exact path="/AssignUserstoProject" component={AssignUserstoProject}/>
+        <Route exact path="/AssignUserToProjectsList" component={AssignUserToProjectsList}/> 
+        <Route exact path="/EditAssignUsersToProjects" component={EditAssignUsersToProjects}/> 
+        {/* <Route exact path="/viewMap" component={viewMap}/> */}
         <Route exact path="/ChangePassword" component={ChangePassword}/>
         <Route exact path="/Model4" component={Model4}/>
         <Route exact path="/Model2" component={Model2}/>

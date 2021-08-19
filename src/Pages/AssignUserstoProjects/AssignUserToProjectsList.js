@@ -2,13 +2,13 @@ import React from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Table, Button, Alert } from 'react-bootstrap';
-import EditUser from "./EditUser";
+import EditAssignUsersToProjects from "./EditAssignUsersToProjects";
 import {Redirect} from 'react-router-dom';
 
 
 
 
- class UserList extends React.Component {
+ class AssignUserToProjectsList extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -52,9 +52,9 @@ import {Redirect} from 'react-router-dom';
           
          
           <ul class="nav nav-tabs page-header-tab">
-              <li class="nav-item"><Link to="/Map" class="nav-link active show">Assign User To Project</Link></li>
+              <li class="nav-item"><Link to="/AddAssignUserstoProject" class="nav-link active show">Assign User To Project</Link></li>
   
-              <li class="nav-item"><Link to="/MapUserList" class="nav-link inactive show" >Assign Users To Projects List</Link></li>
+              <li class="nav-item"><Link to="/AssignUserToProjectsList" class="nav-link inactive show" >Assign Users To Projects List</Link></li>
           </ul>
      
       
@@ -84,7 +84,7 @@ import {Redirect} from 'react-router-dom';
                 <td style={{textAlign:"-webkit-center",color:"black"}}>{user.UserFullName}</td>
                 <td style={{textAlign:"-webkit-center",color:"black"}}>{user.RoleName}</td>
                 <td style={{textAlign:"-webkit-center",color:"black"}}>{user.ActiveStatus.toString()}</td>           
-                <td style={{textAlign:"-webkit-center"}}> <Link to={{pathname:'./EditUser',state:user}}> <Button  variant="info" onClick={() => this.handleClick(user)}>
+                <td style={{textAlign:"-webkit-center"}}> <Link to={{pathname:'./EditAssignUsersToProjects',state:user}}> <Button  variant="info" onClick={() => this.handleClick(user)}>
                  Edit
                 </Button></Link></td>
              
@@ -103,4 +103,4 @@ import {Redirect} from 'react-router-dom';
       );
     }
   }
-  export default UserList;
+  export default AssignUserToProjectsList;

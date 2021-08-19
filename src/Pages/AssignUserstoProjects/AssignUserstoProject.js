@@ -7,7 +7,7 @@ import { Hint } from "react-autocomplete-hint";
 import {Link} from 'react-router-dom';
 import * as moment from 'moment';
 
-class Map extends React.Component{
+class AddAssignUserstoProject extends React.Component{
     constructor(props){
         super(props);
         this.state={
@@ -287,8 +287,8 @@ class Map extends React.Component{
       
     <ul class="nav nav-tabs page-header-tab">
         
-            <li class="nav-item"> <a href="/Map" class="nav-link active show">Assign User To Project</a></li>
-            <li class="nav-item"> <a href="/MapUserList"  class="nav-link inactive show">Assign User To Projects LIst</a></li>
+            <li class="nav-item"> <a href="/AssignUserstoProject" class="nav-link active show">Assign User To Project</a></li>
+            <li class="nav-item"> <a href="/AssignUserToProjectsList"  class="nav-link inactive show">Assign User To Projects List</a></li>
             
         
         
@@ -418,6 +418,7 @@ dateFormat="MM/dd/yyyy"
         )
     }
 }
-export default Map;
-const element=<Map></Map>
+export default AddAssignUserstoProject
+;
+const element=<AddAssignUserstoProject></AddAssignUserstoProject>
 ReactDOM.render(element,document.getElementById("root"));

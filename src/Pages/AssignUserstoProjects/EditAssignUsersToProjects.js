@@ -8,7 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./styles.css";
 import * as moment from 'moment';
 
- class EditUser extends React.Component {
+ class EditAssignUsersToProjects extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -451,4 +451,4 @@ import * as moment from 'moment';
       );
     }
   }
-  export default EditUser;
+  export default EditAssignUsersToProjects;
