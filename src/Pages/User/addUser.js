@@ -378,7 +378,11 @@ class addUser extends React.Component {
 
 </div>   */}        <div className="section-body" >
                             <form onSubmit={this.submitHandler} >
-                                <div class="position-relative"><br />
+                                <div className="section-body">
+                                    <br />
+                                    <div className="section-body">
+                                    <div className="section-body">
+                                    </div>
                                     <div class="row " >
                                         <div class="col-sm-2 col-md-4" >
                                             <div class="form-group" style={{  }}>
@@ -546,7 +550,7 @@ class addUser extends React.Component {
                                             </div>
                                         </div>
                                        
-                                 
+                                        </div>
                                     </div>
                                 </div>
                                 <div  className="center">
