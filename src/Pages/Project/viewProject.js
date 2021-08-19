@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 //import './App.css';
 import { Container, Button, Alert } from 'react-bootstrap';
 import ProjectList from './ProjectList';
-import AddProject from './ProjectForm';
+import EditProject from './ProjectForm';
 import {Link} from 'react-router-dom';
 
 
@@ -90,7 +90,7 @@ class App extends Component {
 
     let userForm;
     if(this.state.isAddProduct || this.state.isEditProduct) {
-      userForm = <AddProject onFormSubmit={this.onFormSubmit} user={this.state.user} />
+      userForm = <EditProject onFormSubmit={this.onFormSubmit} user={this.state.user} />
     }
 
     return (

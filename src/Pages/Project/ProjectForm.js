@@ -6,7 +6,7 @@ import * as moment from 'moment';
 import {Link} from 'react-router-dom';
 
 
-class AddProject extends React.Component {
+class EditProject extends React.Component {
     constructor(props) {
       super(props);
       this.state={
@@ -159,6 +159,8 @@ handleSubmit(event) {
                  </div>
            </div>  
         </div>  */}
+        <br/>
+        <br/>
         <Form onSubmit={this.handleSubmit}>
         <div class="card-body" class="container" style={{}}><br/>
         <div class="row clearfix">
@@ -250,4 +252,4 @@ handleSubmit(event) {
   }
 }
 
-export default AddProject;
+export default EditProject;

@@ -272,73 +272,73 @@ class addUser extends React.Component {
             add: {
                 ...this.state.add,
                 ReportingManagerID: this.state.RMID
-            }})
-           
-            console.log(this.state.add.UserName)
-
-            var { validUser, validRM, validEmp } = this.handleVAlidations();
-            console.log(validRM)
-            console.log(validUser)
-            if (!validUser || !validRM || !validEmp){
-                alert("From has a Error")
-
             }
+        })
 
-            if (!validUser) {
-                
-                this.setState({
+        console.log(this.state.add.UserName)
 
-                    Usererror:" * UserName Should Be unique"
-                },()=>{
-                    
-                })
-
-            }
-
-            if (!validRM) {
-                this.setState({
-
-                    Reportingerror:" * Not Valid Reporting Manager"
-                },()=>{
-                    
-                })
-            }
-            if (!validEmp) {
-                this.setState({
-
-                    Emperror:" * Employee Code should Be Unique"
-                },()=>{
-                    
-                })
-            }
-            if (validUser && validRM && validEmp)
-                 {
-            const apiUrl = 'http://localhost/ScadaClient/api/userdetails';
-                const requestOptions = {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(this.state.add)
-                };
-                
-                fetch(apiUrl, requestOptions)
-                    .then(res => res.json())
-                    .then(result => {
-                      this.setState({
-                        response: result,
-                       
-                      })
-                    },
-                    (error) => { 
-                      this.setState({ error });
-                    }
-                    )
-    
-                    this.props.history.push('/ViewUser') 
-                    window.location.reload()
+        var { validUser, validRM, validEmp } = this.handleVAlidations();
+        console.log(validRM)
+        console.log(validUser)
+        if (!validUser || !validRM || !validEmp) {
+            alert("From has a Error")
 
         }
-           
-       
+
+        if (!validUser) {
+
+            this.setState({
+
+                Usererror: " * UserName Should Be unique"
+            }, () => {
+
+            })
+
+        }
+
+        if (!validRM) {
+            this.setState({
+
+                Reportingerror: " * Not Valid Reporting Manager"
+            }, () => {
+
+            })
+        }
+        if (!validEmp) {
+            this.setState({
+
+                Emperror: " * Employee Code should Be Unique"
+            }, () => {
+
+            })
+        }
+        if (validUser && validRM && validEmp) {
+            const apiUrl = 'http://localhost/ScadaClient/api/userdetails';
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(this.state.add)
+            };
+
+            fetch(apiUrl, requestOptions)
+                .then(res => res.json())
+                .then(result => {
+                    this.setState({
+                        response: result,
+
+                    })
+                },
+                    (error) => {
+                        this.setState({ error });
+                    }
+                )
+
+            this.props.history.push('/ViewUser')
+            window.location.reload()
+
+        }
+
+
     }
 
 
@@ -351,220 +351,215 @@ class addUser extends React.Component {
         //console.log(event.target.value);
     }
 
-    
+
 
 
     render() {
         return (
-            <body className="font-montserrat">
-            
-                        <div className="page">
-                        <div className="card-body">
-                            <div>
 
 
-                                <ul class="nav nav-tabs page-header-tab">
-                                    <li class="nav-item"><Link to="/addUser" class="nav-link active show">Add User</Link></li>
+            <div className="page">
 
-                                    <li class="nav-item"><Link to="/viewUser" class="nav-link inactive show" >View User</Link></li>
-                                </ul>
+                <div className="card-body">
 
 
+                    <ul class="nav nav-tabs page-header-tab">
+                        <li class="nav-item"><Link to="/addUser" class="nav-link active show">Add User</Link></li>
+
+                        <li class="nav-item"><Link to="/viewUser" class="nav-link inactive show" >View User</Link></li>
+                    </ul>
+
+
+                </div>
+
+
+
+                <form onSubmit={this.submitHandler} width="innerwidth">
+
+                    <br />
+
+                    <div class="card-body" class="container"><br />
+
+                        <div class="row clearfix" >
+                            <div class="col-sm-4 col-md-4" >
+                                <div class="form-group" style={{}}>
+                                    <label class="form-label" style={{ color: "black" }}>First Name <span style={{ fontWeight: "bold", color: "red" }} >*</span></label>
+                                    <input type="text" style={{ width: "56%" }} size="30" name="FirstName" required className="form-control"
+                                        maxLength="35" value={this.state.add.FirstName} onChange={this.changeHandler} />
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-md-4">
+                                <div class="form-group" style={{}}>
+                                    <label class="form-label" style={{ color: "black" }}>Last Name <span style={{ fontWeight: "bold", color: "red" }} >*</span></label>
+                                    <input type="text" style={{ width: "56%" }} size="30" required maxLength="35" autoComplete="off"
+                                        className="form-control" name="LastName" value={this.state.add.LastName} onChange={this.changeHandler} />
+
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-md-4">
+                                <div class="form-group" style={{}}>
+                                    <label class="form-label" style={{ color: "black" }}>Employee Code <span style={{ fontWeight: "bold", color: "red" }} >*</span></label>
+                                    <input type="text" style={{ width: "56%" }} autoComplete="off" size="10" required maxLength="15"
+                                        className="form-control" name="EmpCode" value={this.state.add.EmpCode} onChange={this.changeHandler} />
+                                    <span style={{ fontWeight: "", color: "red" }}>{this.state.Emperror}</span>
+                                </div>
                             </div>
 
 
-                            {/* <div className="center">
-         <h3 className="card-title"  style = {{fontSize:"20px", fontWeight:"bold"}}>Add User</h3>
+                            <div class="col-sm-4 col-md-4">
+                                <div class="form-group" style={{}}>
+                                    <label class="form-label" style={{ color: "black" }}>Designation</label>
+                                    <select name="RoleID"
+                                        className="form-control" style={{ width: "56%" }} value={this.state.add.RoleID} onChange={this.changeHandler}>
+                                        <option value=""></option>
+                                        <option value="1">Admin</option>
+                                        <option value="2">Operator</option>
 
-</div>   */}        <div className="section-body" >
-                            <form onSubmit={this.submitHandler} >
-                                <div className="section-body">
-                                    <br />
-                                    <div className="section-body">
-                                    <div className="section-body">
-                                    </div>
-                                    <div class="row " >
-                                        <div class="col-sm-2 col-md-4" >
-                                            <div class="form-group" style={{  }}>
-                                                <label class="form-label" style={{ color: "black" }}>First Name <span style={{ fontWeight: "bold", color: "red" }} >*</span></label>
-                                                <input type="text" style={{ width: "50%" }} size="30" name="FirstName" required className="form-control"
-                                                    maxLength="35" value={this.state.add.FirstName} onChange={this.changeHandler} />
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-md-4">
+                                <div class="form-group" style={{}}>
+                                    <div onChange={this.setGender.bind(this)} style={{ color: "black" }}>
+                                        <label class="form-label" >Gender</label>
+                                        {/* <input type="text" name="Gender" value={this.state.add.Gender} onChange={this.changeHandler}/> */}
+                                        <label>Male<input type="radio" value={"Male"} name="Gender" onChange={this.changeHandler} style={{ marginLeft: "80px" }} /> </label>
+                                        <br />
+                                        <label>Female<input type="radio" value={"Female"} name="Gender" onChange={this.changeHandler} style={{ marginLeft: "60px" }} /> </label>
 
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4 col-md-4">
-                                            <div class="form-group" style={{  }}>
-                                                <label class="form-label" style={{ color: "black" }}>Last Name <span style={{ fontWeight: "bold", color: "red" }} >*</span></label>
-                                                <input type="text" style={{ width: "50%" }} size="30" required maxLength="35" autoComplete="off"
-                                                    className="form-control" name="LastName" value={this.state.add.LastName} onChange={this.changeHandler} />
-
-
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4 col-md-4">
-                                            <div class="form-group" style={{  }}>
-                                                <label class="form-label" style={{ color: "black" }}>Employee Code <span style={{ fontWeight: "bold", color: "red" }} >*</span></label>
-                                                <input type="text" style={{ width: "50%" }} autoComplete="off" size="10" required maxLength="15"
-                                                    className="form-control" name="EmpCode" value={this.state.add.EmpCode} onChange={this.changeHandler} />
-                                                <span style={{ fontWeight: "", color: "red" }}>{this.state.Emperror}</span>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="col-sm-4 col-md-4">
-                                            <div class="form-group" style={{  }}>
-                                                <label class="form-label" style={{ color: "black" }}>Designation</label>
-                                                <select name="RoleID"
-                                                    className="form-control" style={{ width: "50%" }} value={this.state.add.RoleID} onChange={this.changeHandler}>
-                                                    <option value=""></option>
-                                                    <option value="1">Admin</option>
-                                                    <option value="2">Operator</option>
-
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4 col-md-4">
-                                            <div class="form-group" style={{  }}>
-                                                <div onChange={this.setGender.bind(this)} style={{ color: "black" }}>
-                                                    <label class="form-label" >Gender</label>
-                                                    {/* <input type="text" name="Gender" value={this.state.add.Gender} onChange={this.changeHandler}/> */}
-                                                    <label>Male<input type="radio" value={"Male"} name="Gender" onChange={this.changeHandler} style={{ marginLeft: "80px" }} /> </label>
-                                                    <br />
-                                                    <label>Female<input type="radio" value={"Female"} name="Gender" onChange={this.changeHandler} style={{ marginLeft: "60px" }} /> </label>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4 col-md-4">
-                                            <div class="form-group" style={{  }}>
-                                                <div onChange={this.setStatus.bind(this)} style={{ color: "black" }}>
-                                                    <label class="form-label"> Status </label>
-                                                    {/* <input type="text" name="PhoneNumber" value={this.state.add.Company} onChange={this.changeHandler}/>  */}
-
-                                                    <label>Active<input type="radio" value={this.state.ActiveStatus = true} name="ActiveStatus" onChange={this.changeHandler} style={{ marginLeft: "80px" }} /> </label>
-
-
-
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-4 col-md-4">
-                                            <div class="form-group" style={{  }}>
-                                                <label class="form-label" style={{ color: "black" }}>Date of Birth</label>
-                                                
-                                                <DatePicker
-                                                    wrapperClassName="datepicker"
-                                                    className="form-control"
-                                                    autoComplete="off"
-                                                    selected={this.state.add.DOB}
-                                                    onChange={this.handleChange}
-                                                    name="DOB"
-                                                    dateFormat="MM/dd/yyyy"
-                                                />
-
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4 col-md-4">
-                                            <div class="form-group" style={{  }}>
-                                                <label class="form-label" style={{ color: "black" }}>Mobile Number <span style={{ fontWeight: "bold", color: "red" }} >*</span></label>
-                                                <input type="text" required maxLength="10" style={{ width: "50%" }}
-                                                    className="form-control" size="10" name="Mobile" value={this.state.add.Mobile} onChange={this.changeHandler} />
-
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4 col-md-4">
-                                            <div class="form-group" style={{  }}>
-                                                <label class="form-label" style={{ color: "black" }}>Extn. No</label>
-                                                <input type="text" maxLength="10" style={{ width: "50%" }}
-                                                    className="form-control" size="10" name="AlternatePhone" value={this.state.add.AlternatePhone} onChange={this.changeHandler} />
-
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-4 col-md-4">
-                                            <div class="form-group" style={{  }}>
-                                                <label class="form-label" style={{ color: "black" }}>Department</label>
-                                                <input type="text" style={{ width: "50%" }} maxLength="30"
-                                                    className="form-control" size="30" name="Department" value={this.state.add.Department} onChange={this.changeHandler} />
-
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4 col-md-4">
-                                            <div class="form-group" style={{  }}>
-                                                <label class="form-label" style={{ color: "black" }}>Reporting Manager <span style={{ fontWeight: "bold", color: "red" }} >*</span></label>
-                                                <Hint options={this.state.setHintData} allowDropDown>
-                                                    <input type="text" style={{ width: "50%" }} maxLength="30" autoComplete="off"
-                                                        className="form-control" size="30" name="ReportingManager" value={this.state.add.ReportingManager} onChange={this.changeHandler} /></Hint>
-                                                <span style={{ fontWeight: "", color: "red" }}>{this.state.Reportingerror}</span>
-                                            </div>
-                                        </div>
-      
-
-                                        <div class="col-sm-4 col-md-4">
-                                            <div class="form-group" style={{  }}>
-                                                <label class="form-label" style={{ color: "black" }}>Username <span style={{ fontWeight: "bold", color: "red" }} >*</span></label>
-                                                <input type="text" required maxLength="30" style={{ width: "50%" }}
-                                                    className="form-control" size="30" name="UserName" value={this.state.add.UserName} onChange={this.changeHandler} />
-                                                <span style={{ fontWeight: "", color: "red" }}>{this.state.Usererror}</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4 col-md-4">
-                                            <div class="form-group" style={{  }}>
-                                                <label class="form-label" style={{ color: "black" }}>Password <span style={{ fontWeight: "bold", color: "red" }} >*</span></label>
-                                                <input type="text" name="Password" style={{ width: "50%" }} required minLength={8} maxLength={20}
-                                                    className="form-control" value={this.state.add.Password} type="Password" onChange={this.changeHandler} />
-
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4 col-md-4">
-                                            <div class="form-group" style={{  }}>
-                                                <label class="form-label" style={{ color: "black" }}>Email ID</label>
-                                                <input type="email" style={{ width: "50%" }} className="form-control" maxLength="20" name="EmailID" value={this.state.add.EmailID} onChange={this.changeHandler} />
-
-                                            </div>
-                                        </div>
-
-
-                                        <div class="col-sm-4 col-md-4">
-                                            <div class="form-group" style={{  }} >
-                                                <label class="form-label" style={{ color: "black" }}>Date of Joining</label>
-                                                <DatePicker
-                                                    wrapperClassName="datepicker"
-                                                    style={{  }}
-                                                    className="form-control"
-                                                    autoComplete="off"
-                                                    selected={this.state.add.DateofJoining}
-                                                    onChange={this.handleChange1}
-                                                    name="DateofJoining"
-                                                    dateFormat="MM/dd/yyyy"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4 col-md-4">
-                                            <div class="form-group" style={{  }}>
-                                                <label class="form-label" style={{ color: "black" }}>Address</label>
-                                                <textarea type="text" required style={{ width: "50%" }}
-                                                    className="form-control" rows="2" cols="50" name="Address" value={this.state.add.Address} onChange={this.changeHandler} />
-
-                                            </div>
-                                        </div>
-                                       
-                                        </div>
                                     </div>
                                 </div>
-                                <div  className="center">
-
-<button className="btn btn-primary" type="submit" style={{  background: "blue" }}> Save</button>
-
-<Link to={{ pathname: './Viewuser' }}> <button className="btn btn-info" style={{   background: "blue" }} >Back</button></Link>
-</div>
-                            </form>
                             </div>
-                    </div>
+                            <div class="col-sm-4 col-md-4">
+                                <div class="form-group" style={{}}>
+                                    <div onChange={this.setStatus.bind(this)} style={{ color: "black" }}>
+                                        <label class="form-label"> Status </label>
+                                        {/* <input type="text" name="PhoneNumber" value={this.state.add.Company} onChange={this.changeHandler}/>  */}
+
+                                        <label>Active<input type="radio" value={this.state.ActiveStatus = true} name="ActiveStatus" onChange={this.changeHandler} style={{ marginLeft: "80px" }} /> </label>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 col-md-4">
+                                <div class="form-group" style={{}}>
+                                    <label class="form-label" style={{ color: "black" }}>Date of Birth</label>
+
+                                    <DatePicker
+                                        wrapperClassName="datepicker"
+                                        
+                                        autoComplete="off"
+                                        selected={this.state.add.DOB}
+                                        onChange={this.handleChange}
+                                        name="DOB"
+                                        dateFormat="MM/dd/yyyy"
+                                    />
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-md-4">
+                                <div class="form-group" style={{}}>
+                                    <label class="form-label" style={{ color: "black" }}>Mobile Number <span style={{ fontWeight: "bold", color: "red" }} >*</span></label>
+                                    <input type="text" required maxLength="10" style={{ width: "56%" }}
+                                        className="form-control" size="10" name="Mobile" value={this.state.add.Mobile} onChange={this.changeHandler} />
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-md-4">
+                                <div class="form-group" style={{}}>
+                                    <label class="form-label" style={{ color: "black" }}>Extn. No</label>
+                                    <input type="text" maxLength="10" style={{ width: "56%" }}
+                                        className="form-control" size="10" name="AlternatePhone" value={this.state.add.AlternatePhone} onChange={this.changeHandler} />
+
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 col-md-4">
+                                <div class="form-group" style={{}}>
+                                    <label class="form-label" style={{ color: "black" }}>Department</label>
+                                    <input type="text" style={{ width: "56%" }} maxLength="30"
+                                        className="form-control" size="30" name="Department" value={this.state.add.Department} onChange={this.changeHandler} />
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-md-4">
+                                <div class="form-group" style={{}}>
+                                    <label class="form-label" style={{ color: "black" }}>Reporting Manager <span style={{ fontWeight: "bold", color: "red" }} >*</span></label>
+                                    <Hint options={this.state.setHintData} allowDropDown>
+                                        <input type="text" style={{ width: "56%" }} maxLength="30" autoComplete="off"
+                                            className="form-control" size="30" name="ReportingManager" value={this.state.add.ReportingManager} onChange={this.changeHandler} /></Hint>
+                                    <span style={{ fontWeight: "", color: "red" }}>{this.state.Reportingerror}</span>
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-4 col-md-4">
+                                <div class="form-group" style={{}}>
+                                    <label class="form-label" style={{ color: "black" }}>Username <span style={{ fontWeight: "bold", color: "red" }} >*</span></label>
+                                    <input type="text" required maxLength="30" style={{ width: "56%" }}
+                                        className="form-control" size="30" name="UserName" value={this.state.add.UserName} onChange={this.changeHandler} />
+                                    <span style={{ fontWeight: "", color: "red" }}>{this.state.Usererror}</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-md-4">
+                                <div class="form-group" style={{}}>
+                                    <label class="form-label" style={{ color: "black" }}>Password <span style={{ fontWeight: "bold", color: "red" }} >*</span></label>
+                                    <input type="text" name="Password" style={{ width: "56%" }} required minLength={8} maxLength={20}
+                                        className="form-control" value={this.state.add.Password} type="Password" onChange={this.changeHandler} />
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-md-4">
+                                <div class="form-group" style={{}}>
+                                    <label class="form-label" style={{ color: "black" }}>Email ID</label>
+                                    <input type="email" style={{ width: "56%" }} className="form-control" maxLength="20" name="EmailID" value={this.state.add.EmailID} onChange={this.changeHandler} />
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-4 col-md-4">
+                                <div class="form-group" style={{}} >
+                                    <label class="form-label" style={{ color: "black" }}>Date of Joining</label>
+                                    <DatePicker
+                                        wrapperClassName="datepicker"
+                                        autoComplete="off"
+                                        selected={this.state.add.DateofJoining}
+                                        onChange={this.handleChange1}
+                                        name="DateofJoining"
+                                        dateFormat="MM/dd/yyyy"
+                                    />
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-md-4">
+                                <div class="form-group" style={{}}>
+                                    <label class="form-label" style={{ color: "black" }}>Address</label>
+                                    <textarea type="text" required style={{ width: "56%" }}
+                                        className="form-control" rows="2" cols="50" name="Address" value={this.state.add.Address} onChange={this.changeHandler} />
+
+                                </div>
+                            </div>
+
                         </div>
-                 
-            </body>
+                    </div>
+
+                    <div className="center">
+
+                        <button className="btn btn-primary" type="submit" style={{ background: "blue" }}> Save</button>
+
+                        <Link to={{ pathname: './Viewuser' }}> <button className="btn btn-info" style={{ background: "blue" }} >Back</button></Link>
+                    </div>
+                </form>
+
+
+            </div>
+
+
         )
     }
 }
