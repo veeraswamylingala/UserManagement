@@ -7,7 +7,7 @@ import { Hint } from "react-autocomplete-hint";
 import { Link } from 'react-router-dom';
 import * as moment from 'moment';
 
-class AddAssignUserstoProject extends React.Component {
+class AssignUserstoProject extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -411,7 +411,6 @@ class AddAssignUserstoProject extends React.Component {
         )
     }
 }
-export default AddAssignUserstoProject
-    ;
-const element = <AddAssignUserstoProject></AddAssignUserstoProject>
+export default AssignUserstoProject;
+const element = <AssignUserstoProject></AssignUserstoProject>
 ReactDOM.render(element, document.getElementById("root"));
