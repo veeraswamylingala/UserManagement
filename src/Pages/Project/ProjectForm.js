@@ -161,10 +161,11 @@ handleSubmit(event) {
         </div>  */}
         <br/>
         <br/>
+        
         <Form onSubmit={this.handleSubmit}>
         <div class="card-body" class="container" style={{}}><br/>
         <div class="row clearfix">
-        <div class="col-sm-6 col-md-6">
+        <div class="col-sm-4 col-md-4">
              <div class="form-group" style={{marginLeft:"30px"}}>
                  <label class="form-label" style={{color:"black"}}>Project Name:</label>
                  <input type="text" size="30" name="ProjectName" style={{width:"50%"}}
@@ -173,7 +174,7 @@ handleSubmit(event) {
                  
              </div>
          </div>
-         <div class="col-sm-6 col-md-6">
+         <div class="col-sm-4 col-md-4">
              <div class="form-group" style={{marginLeft:"30px"}}>
                  <label class="form-label" style={{color:"black"}}>Project Code</label>
                  <input type="text" size="30" style={{width:"50%"}} disabled
@@ -181,7 +182,7 @@ handleSubmit(event) {
                 
              </div>
          </div>
-         <div class="col-sm-6 col-md-6">
+         <div class="col-sm-4 col-md-4">
              <div class="form-group" style={{marginLeft:"30px"}}>
                  <label class="form-label" style={{color:"black"}}>Project Description</label>
                  <textarea type="text" required style={{width:"50%"}}
@@ -189,7 +190,7 @@ handleSubmit(event) {
          
              </div>
          </div>
-         <div class="col-sm-6 col-md-6">
+         <div class="col-sm-4 col-md-4">
              <div class="form-group" style={{marginLeft:"30px"}}>
                  <label class="form-label" style={{color:"black"}}>Project Value</label>
                  <textarea  required style={{width:"50%"}}
@@ -197,19 +198,19 @@ handleSubmit(event) {
          
              </div>
          </div>
-         <div class="col-sm-6 col-md-6">
+         <div class="col-sm-4 col-md-4">
  <div class="form-group" style={{marginLeft:"30px"}}>
          <label class="form-label" style={{color:"black"}}>Start Date</label>
          {StartDate}
      </div>
  </div>
- <div class="col-sm-6 col-md-6">
+ <div class="col-sm-4 col-md-4">
  <div class="form-group" style={{marginLeft:"30px"}}>
          <label class="form-label" style={{color:"black"}}>End Date</label>
       {EndDate}
      </div>
  </div>
-        <div class="col-sm-6 col-md-6">
+        <div class="col-sm-4 col-md-4">
              <div class="form-group" style={{marginLeft:"30px"}}>
                  <label class="form-label" style={{color:"black"}}>Location</label>
                  <textarea type="text" required style={{width:"50%"}}
@@ -218,7 +219,7 @@ handleSubmit(event) {
              </div>
          </div>
          
-         <div class="col-sm-6 col-md-6">
+         <div class="col-sm-4 col-md-4">
      <div class="form-group" style={{color:"black",marginLeft:"30px"}}>
      <div >
      <label>Active<input type="radio"  name="ActiveStatus"

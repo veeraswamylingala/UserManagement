@@ -353,12 +353,14 @@ import * as moment from 'moment';
 
                     </div>
                     <br/>
+                    <br/>
+                    <br/>
                     
                
                 <Form onSubmit={this. submitHandler}>
         <div class="card-body" class="container"><br/>
         <div class="row clearfix">
-    <div class="col-sm-6 col-md-6">
+    <div class="col-sm-4 col-md-4">
      <div class="form-group" >
          <label class="form-label" style={{color:"black" }}>User Name <span style={{fontWeight:"bold" ,color:"red"}} >*</span></label>
         <Hint   options={this.state.setHintData} allowTabFil>
@@ -366,7 +368,7 @@ import * as moment from 'moment';
       </Hint>
      </div>
  </div>
- <div class="col-sm-6 col-md-6">
+ <div class="col-sm-4 col-md-4">
      <div class="form-group" >
          <label class="form-label" style={{color:"black" }}>Project Name<span style={{fontWeight:"bold" ,color:"red"}} >*</span></label>
          <Hint options={this.state.setHintData1} allowTabFil>
@@ -378,7 +380,7 @@ import * as moment from 'moment';
      </div>
  </div>
 
- <div class="col-sm-6 col-md-6">
+ <div class="col-sm-4 col-md-4">
      <div class="form-group" >
          <label class="form-label" style={{color:"black"}}>Designation</label>
          <select name="RoleID" className="form-control" 
@@ -390,7 +392,7 @@ import * as moment from 'moment';
      </div>
  </div>
 
- <div class="col-sm-6 col-md-6">
+ <div class="col-sm-4 col-md-4">
      <div class="form-group" style={{}}>
          <label class="form-label" style={{color:"black"}}>Discription</label>
          <input type="text" className="form-control"  size="30" style={{width:"50%"}}
@@ -400,20 +402,20 @@ import * as moment from 'moment';
  </div>
  
 
-     <div class="col-sm-6 col-md-6">
+     <div class="col-sm-4 col-md-4">
      <div class="form-group" >
          <label class="form-label" style={{color:"black"}}>Assign From</label>
  {Assigndate}
      </div>
  </div>
- <div class="col-sm-6 col-md-6">
+ <div class="col-sm-4 col-md-4">
      <div class="form-group" >
          <label class="form-label" style={{color:"black"}}>Assign To</label>
  {Assignto}
 
      </div>
  </div>
- <div class="col-sm-6 col-md-6">
+ <div class="col-sm-4 col-md-4">
      <div class="form-group" style={{marginLeft:"30px"}}>
      <div >
      <label class="form-label" style={{color:"black"}}>Status</label>

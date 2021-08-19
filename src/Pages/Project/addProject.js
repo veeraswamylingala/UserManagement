@@ -199,7 +199,8 @@ class addProject extends React.Component{
       
 </div>
 
-
+<br/>
+        <br/>
 {/* <div className='center'>
          <h3 className="card-title"  style = {{fontSize:"20px", fontWeight:"bold"}}>Add Project</h3>
 
@@ -207,7 +208,7 @@ class addProject extends React.Component{
 <form onSubmit={this.submitHandler} >
 <div class="card-body" class="container"   style={{}}><br/>
 <div class="row clearfix">
-<div class="col-sm-6 col-md-6" >
+<div class="col-sm-4 col-md-4" >
      <div class="form-group" >
          <label class="form-label" style={{color:"black"}}>Project Name <span style={{fontWeight:"bold" ,color:"red"}} >*</span></label>
          <input type="text"style={{width:"50%"}} size="30" name="ProjectName" 
@@ -218,7 +219,7 @@ class addProject extends React.Component{
          
      </div>
  </div>
- <div class="col-sm-6 col-md-6">
+ <div class="col-sm-4 col-md-4">
      <div class="form-group" >
          <label class="form-label" style={{color:"black"}}>Project Code <span style={{fontWeight:"bold" ,color:"red"}} >*</span></label>
          <input type="text" size="30" style={{width:"50%"}}
@@ -226,7 +227,7 @@ class addProject extends React.Component{
         
      </div>
  </div>
- <div class="col-sm-6 col-md-6">
+ <div class="col-sm-4 col-md-4">
      <div class="form-group" >
          <label class="form-label" style={{color:"black"}}>Project Description</label>
          <textarea type="text" required style={{width:"50%"}}
@@ -234,7 +235,7 @@ class addProject extends React.Component{
  
      </div>
  </div>
- <div class="col-sm-6 col-md-6">
+ <div class="col-sm-4 col-md-4">
      <div class="form-group" >
          <label class="form-label" style={{color:"black"}}>Project Value</label>
          <input type="text" required style={{width:"50%"}}
@@ -242,7 +243,7 @@ class addProject extends React.Component{
  
      </div>
  </div>
- <div class="col-sm-6 col-md-6">
+ <div class="col-sm-4 col-md-4">
      <div class="form-group">
          <label class="form-label" style={{color:"black"}}>Start Date</label>
          <DatePicker
@@ -255,7 +256,7 @@ class addProject extends React.Component{
 />
      </div>
  </div>
- <div class="col-sm-6 col-md-6">
+ <div class="col-sm-4 col-md-4">
      <div class="form-group" >
          <label class="form-label" style={{color:"black"}}>End Date</label>
          <DatePicker
@@ -267,7 +268,7 @@ class addProject extends React.Component{
         />
      </div>
  </div>
-<div class="col-sm-6 col-md-6">
+<div class="col-sm-4 col-md-4">
      <div class="form-group" >
          <label class="form-label" style={{color:"black"}}>Location</label>
          <textarea type="text" required style={{width:"50%"}}
@@ -276,7 +277,7 @@ class addProject extends React.Component{
      </div>
  </div>
  
- <div class="col-sm-6 col-md-6">
+ <div class="col-sm-4 col-md-4">
      <div class="form-group" style={{marginLeft:"30px"}}>
      <div onChange={this.setStatus.bind(this)}  style={{color:"black"}}>
         <label class="form-label"> Status </label> 
