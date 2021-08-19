@@ -133,7 +133,7 @@ UpdateProfile()
 UpdateReport()
 {
     this.setState({data: ' Reports'});
-    this.UpdateXml = this.UpdateXml.bind(this);
+    this.UpdateReport = this.UpdateReport.bind(this);
     
 }
    
