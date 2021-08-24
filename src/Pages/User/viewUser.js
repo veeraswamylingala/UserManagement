@@ -27,7 +27,10 @@ class App extends Component {
   onFormSubmit(data) {
     console.log(data.UserID)
     let apiUrl;
-    //data.DateofRelieving=moment(data.DateofRelieving).format('MM/DD/YYYY');
+    data.DateofRelieving=moment(data.DateofRelieving).format('DD/MM/YYYY');
+    data.DateofJoining=moment(data.DateofJoining).format('DD/MM/YYYY');
+    data.DOB=moment(data.DOB).format('DD/MM/YYYY');
+
     
     apiUrl = 'http://localhost/ScadaClient/api/EditUser?UserID='+data.UserID+'&FirstName='+data.FirstName+'&LastName='+data.LastName+'&EmpCode='+data.EmpCode+'&Gender='+data.Gender+'&DOB='+data.DOB+'&Department='+data.Department+'&ReportingManager='+data.ReportingManager+'&ReportingManagerID='+data.ReportingManagerID+'&Mobile='+data.Mobile+'&AlternatePhone='+data.AlternatePhone+'&EmailID='+data.EmailID+'&Address='+data.Address+'&DateofJoining='+data.DateofJoining+'&DateofRelieving='+moment(data.DateofRelieving).format('MM/DD/YYYY')+'&RoleiD='+data.RoleID+'&ActiveStatus='+data.ActiveStatus;
     

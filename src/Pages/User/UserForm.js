@@ -221,17 +221,18 @@ class EditUser extends React.Component {
         });
     }
     onClick() {
-        window.location.reload()
+       window.location.reload()
     }
     render() {
         console.log(this.state.DateofRelieving)
         this.state.DateofRelieving = new Date(this.state.DateofRelieving)
-        console.log(this.state.DateofRelieving)
+        this.state.DateofRelieving1=moment(this.state.DateofRelieving).format('MM/DD/YYYY');
+        console.log(this.state.DateofRelieving1)
         console.log(this.state.DateofRelieving)
         var DateofRelieving = <DatePicker
             time={false} dateFormat="MMMM d, yyyy"
             onChange={this.handleChange1}
-            selected={this.state.DateofRelieving=="Mon Jan 01 1900 00:00:00 GMT+0521 (India Standard Time)"?null:this.state.DateofRelieving}
+            selected={this.state.DateofRelieving1=="01/01/1900"?null:this.state.DateofRelieving}
             className="form-control" />
 
         this.state.DateofJoining = new Date(this.state.DateofJoining)
@@ -448,7 +449,7 @@ class EditUser extends React.Component {
                                         <div class="row clearfix">
                                             <div className='center'>
                                                 <Form.Control type="hidden" name="id" value={this.state.UserID} />
-                                                <button className="btn btn-primary" type="submit" style={{ width: "9%", marginRight: "50px", marginTop: "3px", background: "blue" }} onClick={this.onCreateProject}> Update</button>
+                                                <button className="btn btn-primary" type="submit" style={{ width: "9%", marginRight: "50px", marginTop: "3px", background: "blue" }} > Update</button>
 
                                                 <Link to="Viewuser"><button className="btn btn-primary" style={{ width: "8%", height: "92%", marginRight: "50px", background: "blue" }} onClick={this.onClick} >Back</button></Link>
 
