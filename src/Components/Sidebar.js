@@ -33,6 +33,7 @@ class Sidebar extends React.Component{
     this.UpdateProfile=this.UpdateProfile.bind(this);
     this.UpdateReport=this.UpdateReport.bind(this);
     this.UpdateChangePassword = this.UpdateChangePassword.bind(this);
+    
  };
 
      updateAdmin() {
@@ -45,6 +46,8 @@ updateProcessFlowModel() {
          
     this.setState({data: 'Process Flow Models'})
     this.updateProcessFlowModel = this.updateProcessFlowModel.bind(this);
+    window.location.assign("processflow")
+    
 }
 
  updateAddProject() {
@@ -155,7 +158,7 @@ UpdateReport()
                         <div className="right">
                             <div className="notification d-flex">
                                 <div className="dropdown d-flex">
-                                    <div className="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-2" data-toggle="dropdown"> <i className="fa fa-user" style={{color:"white"}} > Loged in as : {localStorage.getItem("user")}</i></div>
+                                    <div className="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-2" data-toggle="dropdown"> <i className="fa fa-user" style={{color:"white"}} > Loged in as : {sessionStorage.getItem("user")}</i></div>
                                         <div className="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                             <Link onClick = {this.UpdateProfile} to="/Profile"><i className="fa fa-user"></i><span> My Profile</span></Link>
                       
@@ -175,7 +178,11 @@ UpdateReport()
                     <div className="hleft">
                         <div className="dropdown">
                             < div className="icon menu_toggle mr-3">
-                                <Link  onClick = {this.updateAdmin} to='/AdminDashboard' class="nav-link icon xs-hide"><i className="fa fa-tachometer"  data-toggle="tooltip" data-placement="right" title="Dashboard" ></i></Link >  
+                               
+                               <Link  onClick = {this.updateAdmin} to='/AdminDashboard' class="nav-link icon xs-hide"><i className="fa fa-tachometer"  data-toggle="tooltip" data-placement="right" title="Dashboard" ></i></Link >  
+                               <Link  onClick = {this.updateProcessFlowModel} to='/processflow' class="nav-link icon app_file xs-hide"><i className="fa fa-key"  data-toggle="tooltip" data-placement="right" title="processflow"></i></Link >
+                
+                            
                                 <Link  onClick = {this.UpdateAddUser} to='/AddUser'  class="nav-link icon xs-hide"><i className="fa fa-user"  data-toggle="tooltip" data-placement="right" title="Add User"></i></Link >
                                 <Link  onClick = {this.UpdateViewUser} href="ViewProject" class="nav-link icon app_file xs-hide"><i className="fa fa-eye"  data-toggle="tooltip" data-placement="right" title="Users List"></i></Link >
                                 <Link  onClick = {this.updateAddProject} to='/AddProject' class="nav-link icon app_inbox xs-hide"><i className="fa fa-plus"  data-toggle="tooltip" data-placement="right" title="Add Project"></i></Link >
@@ -185,7 +192,7 @@ UpdateReport()
                                 <Link  onClick = {this.UpdateChangePassword} to='/ChangePassword' class="nav-link icon app_file xs-hide"><i className="fa fa-key"  data-toggle="tooltip" data-placement="right" title="Change Password"></i></Link >
                                 {/* <Link  onClick = {this.UpdateXml} to='/AddXml' class="nav-link icon app_file xs-hide"><i className="fa fa-key"  data-toggle="tooltip" data-placement="right" title="AddXml"></i></Link > */}
                                 <Link  onClick = {this.UpdateReport} to='/Download' class="nav-link icon app_file xs-hide"><i className="fa fa-key"  data-toggle="tooltip" data-placement="right" title="Reports"></i></Link >
-                
+                               
                             </div>
                         </div>
                     
@@ -204,6 +211,8 @@ UpdateReport()
                         <ul className="metismenu" >
                                                                
                             <li><Link onClick = {this.updateAdmin}  to="/AdminDashboard"><i className="fa fa-tachometer"></i><span>Dashboard</span></Link></li>
+                            <li><Link to="/processflow"  onClick = {this.updateProcessFlowModel}><i className="fa fa-key"></i><span>ProcessFlowModel</span></Link></li>
+           
                             <li><Link to="/AddUser" onClick = {this.UpdateAddUser}><i className="fa fa-user-plus"></i><span>Add User</span></Link></li>
                             <li><Link href="ViewUser"  onClick = {this.UpdateViewUser}><i className="fa fa-user"></i><span>Users List</span></Link></li>
                             <li><Link onClick = {this.updateAddProject} to="/AddProject" ><i className="fa fa-plus"></i><span>Add Project</span></Link></li>
@@ -213,7 +222,7 @@ UpdateReport()
                             <li><Link to="/ChangePassword"  onClick = {this.UpdateChangePassword}><i className="fa fa-key"></i><span>Change Password</span></Link></li>
                             {/* <li><Link to="/AddXml"  onClick = {this.UpdateXml}><i className="fa fa-key"></i><span>Add Xml</span></Link></li> */}
                             <li><Link to="/Download"  onClick = {this.UpdateReport}><i className="fa fa-key"></i><span>Report</span></Link></li>
-           
+                          
                         </ul>
               
                     

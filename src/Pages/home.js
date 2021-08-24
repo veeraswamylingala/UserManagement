@@ -14,9 +14,10 @@ async function login() {
     let item = { username, password };
     console.clear();
     console.log(item)
-    localStorage.setItem("user",username)
-    localStorage.setItem("password",password)
-    localStorage.setItem("Admin","1")
+    
+    sessionStorage.setItem("user",username)
+    sessionStorage.setItem("password",password)
+    sessionStorage.setItem("Admin","1")
     let result = await fetch("http://localhost/ScadaClient/api/userAuthentication", {
         method: 'POST',
         headers: {

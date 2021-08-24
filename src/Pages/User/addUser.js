@@ -488,7 +488,7 @@ class addUser extends React.Component {
                                     <label class="form-label" style={{ color: "black" }}>Reporting Manager <span style={{ fontWeight: "bold", color: "red" }} >*</span></label>
                                     <Hint options={this.state.setHintData} allowDropDown>
                                         <input type="text" style={{ width: "56%" }} maxLength="30" autoComplete="off"
-                                            className="form-control" size="30" name="ReportingManager" value={this.state.add.ReportingManager} onChange={this.changeHandler} /></Hint>
+                                            className="form-control" size="30"  required name="ReportingManager" value={this.state.add.ReportingManager} onChange={this.changeHandler} /></Hint>
                                     <span style={{ fontWeight: "", color: "red" }}>{this.state.Reportingerror}</span>
                                 </div>
                             </div>

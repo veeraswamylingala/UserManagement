@@ -26,7 +26,7 @@ import {BrowserRouter as Router ,Route, Switch} from 'react-router-dom';
 import AddXml from "./Pages/AddXml";
 import Download from "./Pages/Report"
 import Profile from './Pages/Profile';
-
+import UNCCanvas from './Pages/Xml/UNCCanvas';
 
 class App extends React.Component {
   
@@ -42,9 +42,9 @@ class App extends React.Component {
       <div>
         
       <Router>
-        {localStorage. clear(),        
+               
       <Route exact path="/" component={Login} />
-    }  
+     
       </Router>
       </div>
       )
@@ -56,6 +56,21 @@ class App extends React.Component {
             
           <Router>
             <Route exact path="/ForgotPassword" component={ForgotPassword}/>
+            
+            <Route exact path="/" component={Login} />
+          </Router>
+          }
+        </div>
+      )
+      
+    }
+    else if (window.location.pathname==="/processflow"){
+      return(
+        <div>
+          {
+            
+          <Router>
+            <Route exact path="/processflow" component={UNCCanvas}/>
             
             <Route exact path="/" component={Login} />
           </Router>

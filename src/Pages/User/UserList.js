@@ -102,7 +102,7 @@ class UserList extends React.Component {
                 <th style={{textTransform:"none", color:"#E5E5E5"}}>DOB</th>
                 <th style={{textTransform:"none", color:"#E5E5E5"}}>Gender</th>
                 <th style={{textTransform:"none", color:"#E5E5E5"}}>Department</th>
-                {localStorage.getItem("Admin")?
+                {sessionStorage.getItem("Admin")?
                 <th style={{textTransform:"none", color:"#E5E5E5"}}>Action</th>
                 
                   :""                            
@@ -121,7 +121,7 @@ class UserList extends React.Component {
                   <td style={{color:"black"}}>{this.convert(data.DOB)}</td>
                   <td style={{color:"black"}}>{data.Gender}</td>
                   <td style={{color:"black"}}>{data.Department}</td>
-                  {localStorage.getItem("Admin")?
+                  {sessionStorage.getItem("Admin")?
                 <td style={{textAlign:"-webkit-center"}}> <Button variant="info" onClick={() => this.props.editProduct(data.UserID)}>Edit</Button>
                 </td>
               :""
