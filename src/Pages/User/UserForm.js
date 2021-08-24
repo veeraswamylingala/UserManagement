@@ -221,18 +221,18 @@ class EditUser extends React.Component {
         });
     }
     onClick() {
-       window.location.reload()
+      // window.location.reload()
     }
     render() {
         console.log(this.state.DateofRelieving)
-        this.state.DateofRelieving = new Date(this.state.DateofRelieving)
+        this.state.DateofRelieving = new Date(this.state.DateofRelieving=="Mon Jan 01 1900 00:00:00 GMT+0521 (India Standard Time)"?null:this.state.DateofRelieving)
         this.state.DateofRelieving1=moment(this.state.DateofRelieving).format('MM/DD/YYYY');
         console.log(this.state.DateofRelieving1)
         console.log(this.state.DateofRelieving)
         var DateofRelieving = <DatePicker
             time={false} dateFormat="MMMM d, yyyy"
             onChange={this.handleChange1}
-            selected={this.state.DateofRelieving1=="01/01/1900"?null:this.state.DateofRelieving}
+            selected={this.state.DateofRelieving1=="01/01/1970"?null:this.state.DateofRelieving}
             className="form-control" />
 
         this.state.DateofJoining = new Date(this.state.DateofJoining)
@@ -364,7 +364,7 @@ class EditUser extends React.Component {
       */}
                                             {/* <code>{`[${this.state.setHintData.toString()}]`}</code> */}
                                             <Hint options={this.state.HintData != null ? this.state.HintData : []} allowDropDown>
-                                                <input style={{ width: "63%" }}
+                                                <input style={{ width: "63%" }} required
                                                     type="text" name="ReportingManager" value={this.state.ReportingManager} onChange
                                                     ={this.handleChange}
 
