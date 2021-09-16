@@ -179,6 +179,7 @@ class addUser extends React.Component {
         let validUser = true;
         let validRM = false;
         let validEmp = true;
+        let validPassword= false;
         //let validRMId=false;
         // let boolPasswordError = true;
         console.log(".....................")
@@ -240,6 +241,16 @@ class addUser extends React.Component {
                 }
             })
         }
+  // // Password Validation.......
+  if(this.state.add.Password !== null){
+    alert("ok")
+    const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+    alert(strongRegex.test(this.state.add.Password))
+    
+    if(strongRegex.test(this.state.add.Password) ==  true){
+        validPassword = true
+    }
+}
 
         // Emp code Validation
         if (this.state.add.EmpCode !== null) {
@@ -254,7 +265,7 @@ class addUser extends React.Component {
         }
 
 
-        return { validUser, validRM, validEmp };
+        return { validUser, validRM, validEmp,validPassword };
 
     }
 
@@ -273,11 +284,11 @@ class addUser extends React.Component {
 
         console.log(this.state.add.UserName)
 
-        var { validUser, validRM, validEmp } = this.handleVAlidations();
+        var { validUser, validRM, validEmp,validPassword } = this.handleVAlidations();
         console.log(validRM)
         console.log(validUser)
-        if (!validUser || !validRM || !validEmp) {
-            alert("From has a Error")
+        if ( !validPassword ) {
+            alert("Please enter Valid Password")
 
         }
 
@@ -308,7 +319,7 @@ class addUser extends React.Component {
 
             })
         }
-        if (validUser && validRM && validEmp) {
+        if (validUser && validRM && validEmp && validPassword) {
             const apiUrl = 'http://localhost/ScadaClient/api/userdetails';
             const requestOptions = {
                 method: 'POST',
@@ -354,7 +365,7 @@ class addUser extends React.Component {
         return (
 
 
-            <div className="page">
+            <div className="page" >
 
                 <div className="card-body">
 
@@ -370,7 +381,7 @@ class addUser extends React.Component {
 
 
 
-                <form onSubmit={this.submitHandler} width="innerwidth">
+                <form onSubmit={this.submitHandler}>
 
                     <br />
 
@@ -551,7 +562,15 @@ class addUser extends React.Component {
                         <Link to={{ pathname: './Viewuser' }}> <button className="btn btn-info" style={{ background: "blue" }} >Back</button></Link>
                     </div>
                 </form>
-
+                <div className="">
+                   <h1>Note:</h1> 
+                   <li> The Password must contain at least 1 lowercase alphabetical character</li>
+                   <li>The Password must contain at least 1 uppercase alphabetical character</li>
+                   <li>The Password must contain at least 1 numeric character</li>
+                   <li>The Password must contain at least one special character</li>
+                   <li> The Password must be eight characters or longer</li>
+                   </div>
+                {/* the pushbhvcvxcvhcvxh */}
 
             </div>
 
