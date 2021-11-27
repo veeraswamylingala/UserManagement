@@ -1,0 +1,25 @@
+https://www.youtube.com/watch?v=UWVc_DNj0xw
+
+https://www.youtube.com/watch?v=JFzk5s55048
+
+1. Create a simple package, one OLEDB source and Flat file destination.
+2. Go to the Flat FIle connection properties
+3. Go to the expression property for the same
+4. Select the property as connection string and when you open the expression type the below code as it is:
+for example: let's say my package name is: "ImportDatatoFlatFile"
+"E:\\unical\\DynamicFlatFiles"+@[System::PackageName]+""+REPLACE((DT_STR,30,1252)GETDATE(),":","")
+"E:\\unical\\DynamicFlatFiles"+PackageName]+""+REPLACE((DT_STR,30,1252)GETDATE(),":","")
+
+\\
+"E:\\unical\\DynamicFlatFiles"+""+REPLACE((DT_STR,30,1252)GETDATE(),":","")
+
+@[User::OutputFolder]+REPLACE((DT_STR,30,1252)GETDATE(),":","_")+".txt"
+"E:\\A-Learnings\\Miscellaneous\\TextFiles\\"+@[System::PackageName]+""+REPLACE((DT_STR,30,1252)GETDATE(),":","")
+
+For the first time, we need to browse the connection to a flat file, to retriev the input columns and
+their properties, but after the connection manager property change, it's not required.
+
+NOTE:
+We have to place an extra backward slash in the path as first '\' defines the next '\' slash character as a string.
+we need to convert the DateTime to string format other wise it would not be recongnized as a part of the file name.
+We need to replace the ":" sign in the time part because colon sign can not be a part of the file.
