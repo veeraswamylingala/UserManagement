@@ -1,0 +1,330 @@
+1.Users Api
+->to get All users: 
+metho -- get
+URL -- https://devhscapi2.hotshotsconnections.us/api/users/
+
+->to create user:
+method: Post
+URL -- https://devhscapi2.hotshotsconnections.us/api/users
+Json format -->
+{
+    "First_Name": "Vee",
+    "Last_Name": "Codee",
+    "Profile_Pic": "https://lh3.googleusercontent.com/a-/AOh14Gi8z1Xw1iC6vifOYrAZSLLVPxrMODcFAtHCePHT=s96-c",
+    "Bio": "",
+    "Country": "",
+    "MobileNumber": null,
+    "GmailId": "techveerda2021@gmail.com",
+    "Facebook_Id": null,
+    "Displayname": null,
+    "Username": "vee cdode",
+    "Status": "",
+    "Password": null,
+    "LoginType": null,
+    "firebase_id": "cw1QQhMbRPeXasqaA3EKzn:APA91bF1iHx5L0NF-yRPZ2_jG1tgvZXGVJNSQm4XOWW7l4aG_WCEB9LNXU3zTPaeziGUQPVSCEobfYmyV8V402gj1K13wbgbQ483uX8h_VUzMG_A7k8oVOjWM47aB1Ysh8LZUxYXcdSk",
+    "Interests": "",
+    "Role_Id": 1,
+    "Device_Id": 0,
+    "Followers": 0,
+    "Follows": 0,
+    "Verified": 0,
+    "Business": 0,
+    "Created_at": "0000-00-00 00:00:00",
+    "Updated_at": "0000-00-00 00:00:00"
+}
+
+->to update single userm with user_id: 
+method -- put
+URL -- https://devhscapi2.hotshotsconnections.us/api/users/76 ---> ( hear 76 is user_id)
+{
+    "First_Name": "Vee",
+    "Last_Name": "Codee",
+    "Profile_Pic": "https://lh3.googleusercontent.com/a-/AOh14Gi8z1Xw1iC6vifOYrAZSLLVPxrMODcFAtHCePHT=s96-c",
+    "Bio": "",
+    "Country": "",
+    "MobileNumber": null,
+    "GmailId": "techveera2021@gmail.com",
+    "Facebook_Id": null,
+    "Displayname": null,
+    "Username": "vee code",
+    "Status": "",
+    "Password": null,
+    "LoginType": null,
+    "firebase_id": "cw1QQhMbRPeXasqaA3EKzn:APA91bF1iHx5L0NF-yRPZ2_jG1tgvZXGVJNSQm4XOWW7l4aG_WCEB9LNXU3zTPaeziGUQPVSCEobfYmyV8V402gj1K13wbgbQ483uX8h_VUzMG_A7k8oVOjWM47aB1Ysh8LZUxYXcdSk",
+    "Interests": "",
+    "Role_Id": 1,
+    "Device_Id": 0,
+    "Followers": 0,
+    "Follows": 0,
+    "Verified": 0,
+    "Business": 0,
+    "Created_at": "0000-00-00 00:00:00",
+    "Updated_at": "0000-00-00 00:00:00"
+}
+
+--> to get single user:
+method -- get
+URL -- https://devhscapi2.hotshotsconnections.us/api/users/76 ---> ( hear 76 is user_id)
+
+-->to delete SIngle user Based on User_id
+method --  delete
+URL -- https://devhscapi2.hotshotsconnections.us/api/users/76 ---> ( hear 76 is user_id)
+----------------------------------------------------------------------------------------------------------------------------------------------------
+2) category-----it's a Look up table..
+--> to get single category:
+method -- get
+URL -- https://devhscapi2.hotshotsconnections.us/api/category/1 (hear 1 is categoryid)
+--> to get all category:
+method -- get
+URL -- https://devhscapi2.hotshotsconnections.us/api/category
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+3) Chat
+-> to get all Chat:
+ method -- get
+ URL---https://devhscapi2.hotshotsconnections.us/api/chat
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+4) Comment
+-> to create comment
+ method -- post
+ URL -- https://devhscapi2.hotshotsconnections.us/api/Comments/
+json format:
+{
+    
+      "response_category_id": 2,
+        "reference_id": 429,
+        "user_id": 111,
+        "comment": "nice video",
+        "Created_at": "2021-12-25T16:16:09.000Z"
+}
+
+
+-> to get All comments
+ method --  get
+ URL--https://devhscapi2.hotshotsconnections.us/api/Comments
+
+-> to get specific category video stream comments
+ method -- get
+ URL-- https://devhscapi2.hotshotsconnections.us/api/Comments/1/429  (hear 1 is the response_category id and 429 is the video refrence id)
+
+--> to update particular comment with comment id
+ method -- put
+ URL -- https://devhscapi2.hotshotsconnections.us/api/Comments/4 (hear 4 is the comment id)
+json format:
+{
+    
+      "response_category_id": 1,
+        "reference_id": 429,
+        "user_id": 111,
+        "comment": "nice video",
+        "Created_at": "2021-12-25T16:16:09.000Z"
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+5) Events
+-> to get all events
+ method -- get
+ URL -- https://devhscapi2.hotshotsconnections.us/api/events
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+6)group_members
+
+->to create multilpe group members
+ method:post
+ URL --https://devhscapi2.hotshotsconnections.us/api/group_members
+ JSON format :
+ [{
+    
+    "group_id": 22,
+    "user_id": 90,
+    "user_role": 1
+},
+{
+    
+    "group_id": 23,
+    "user_id": 90,
+    "user_role": 1
+},
+]
+
+-> to get all group_members
+ method -- get
+ URL -- https://devhscapi2.hotshotsconnections.us/api/group_members/
+
+-->to delete the group member with member id
+ method--delete
+ URL -- https://devhscapi2.hotshotsconnections.us/api/group_members/123 (123 is member_id)
+
+
+->to get  group_members based on user_id
+ method -- get
+ URL -- https://devhscapi2.hotshotsconnections.us/api/groups/findAllwithUserID/90  (90 is userid)
+
+--> to get group members based on groupid
+ method -- get
+ URL -- https://devhscapi2.hotshotsconnections.us/api/groups/findAllwithGroupID/29 (29 is groupid)
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+7) hsc_groups
+--> to get All groups
+ method -- get
+ URL -- https://devhscapi2.hotshotsconnections.us/api/groups
+
+--> to create group
+ method -- post
+ URL -- https://devhscapi2.hotshotsconnections.us/api/groups
+ json format:
+ {
+     "Created_By": 90,
+        "Group_Name": "My test Team",
+        "Description": "My  oficial test team",
+        "Created_at": "2021-12-02 22:57:34",
+        "Updated_at": "0000-00-00 00:00:00"
+}
+
+--> to update the group using group id
+ method -- put
+ URL -- https://devhscapi2.hotshotsconnections.us/api/groups/41 (41 is group id)
+ json format--
+ {
+     "Created_By": 90,
+        "Group_Name": "My test Team",
+        "Description": "My  oficial team for testing",
+        "Created_at": "2021-12-02 22:57:34",
+        "Updated_at": "0000-00-00 00:00:00"
+}
+
+--> to delete the group with groupid
+ method -- delete
+ URL -- https://devhscapi2.hotshotsconnections.us/api/groups/41 (41 is group id)
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+8)highlights
+--> to get All highlights
+ method -- get
+ URL -- https://devhscapi2.hotshotsconnections.us/api/highlights
+
+--> to create highlight
+ method -- post
+ URL -- https://devhscapi2.hotshotsconnections.us/api/highlights/
+ Json Format:
+ {
+       "User_Id": 87,
+        "Username": "",
+        "User_profile_pic" : "",
+        "Video_Path": "https://devhscapi2.hotshotsconnections.us/images/20211207_1410571.mp4",
+        "Highlights_Thumnail": "",
+        "category_name": "",
+        "commentry_id": 0,
+        "hsc_music_id": 1,
+        "Likes": 0,
+        "DisLikes": 0,
+        "Hot": 0,
+        "Commentry": "",
+        "is_public": "",
+        "invitation_id": 0,
+        "Created_at": "2021-12-08 23:51:18",
+        "Updated_at": "0000-00-00 00:00:00"
+}
+-->to get higlights by highlight id
+ method -- get 
+ URL -- https://devhscapi2.hotshotsconnections.us/api/highlights/4 (4 is a higlight id)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+9)hotshots
+-->to get all hot shots
+ method -- get
+ URL -- https://devhscapi2.hotshotsconnections.us/api/hotshots
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+10) Connections
+--> to get all conections
+ method -- get
+ URL -- https://devhscapi2.hotshotsconnections.us/api/hsc_connections
+
+--> to create connections
+ method -- post
+ URL -- https://devhscapi2.hotshotsconnections.us/api/hsc_connections
+ json format:
+ {
+       "requested_user_id": 106,
+        "requested_user_name": "Veera Lingala",
+        "requested_user_profile_pic": "https://platform-lookaside.fbsbx.com/platform/prof",
+        "connection_to_user_id": 111,
+        "connection_to_user_name": "Veeraswamy Lingala",
+        "connection_to_user_profile_pic": "https://lh3.googleusercontent.com/a-/AOh14GgbCRn-n",
+        "follow_status": "false",
+        "created_at": 2021
+}
+--> to update the connection based on connection id
+ method -- put
+ URL -- https://devhscapi2.hotshotsconnections.us/api/hsc_connections/73 (73 is connection id)
+json format --
+ {
+       "requested_user_id": 106,
+        "requested_user_name": "Veera ",
+        "requested_user_profile_pic": "https://platform-lookaside.fbsbx.com/platform/prof",
+        "connection_to_user_id": 111,
+        "connection_to_user_name": "Veeraswamy Lingala",
+        "connection_to_user_profile_pic": "https://lh3.googleusercontent.com/a-/AOh14GgbCRn-n",
+        "follow_status": "false",
+        "created_at": 2021
+}
+
+-->to get connection based on connection id
+ method --  get
+ URL -- https://devhscapi2.hotshotsconnections.us/api/hsc_connections/73  (73 is conection id)
+
+-->to delete connection based on connection id
+ method --  delete
+ URL -- https://devhscapi2.hotshotsconnections.us/api/hsc_connections/73  (73 is conection id)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
