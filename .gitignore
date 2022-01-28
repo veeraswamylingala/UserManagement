@@ -1,5 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+https://localhost:44348/api/FileRead?PointName=DAS_GRP2&FromDt=2022-01-28T10:00:50&ToDt=2022-01-28T18:51:50
+
 # dependencies
 /node_modules
 /.pnp
