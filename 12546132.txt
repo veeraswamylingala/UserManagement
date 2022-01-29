@@ -1,0 +1,1187 @@
+
+
+var config = require('./dbconfig');
+const sql = require('mssql');
+
+
+
+async function getOrders() {
+
+    var fs = require("fs")
+
+    let pool = await sql.connect(config);
+    //console.log(pool)
+    
+    let Tagname1 = await pool.request().query("SELECT distinct pointname from currentgroup")
+   // console.log(Tagname1.recordsets)
+
+     const  Tagname = []
+     Tagname1.recordsets.map((a=>{
+        Tagname.push(a)
+    }))
+   //console.log(Tagname[0])
+   // console.log(Tagname[0])
+    
+
+    var filePath = "E:/unical/DynamicFlatFiles/OutputFolder/"
+
+    // fs.writeFile('data.text', JSON.stringify(fileData), (err) => {
+
+    //     // In case of a error throw err.
+    //     if (err) throw err;
+    // })
+    
+    var fs = require('fs');
+    const moment = require('moment');
+    var time = moment ( new Date()).format("YYYY-MM-DD HHmmss").toString()
+   " DTms_0010$2022-01-07 154105.108000000"
+   
+   // console.log("2022-01-07 154105")
+   // console.log(time)
+
+            
+                    for (let i = 0; i < Tagname[0].length; i++) {
+
+                        let products = await pool.request().query(`select slno,plntloc,pointname,fvalue,timestamp from webdata_log where pointname ='${Tagname[0][i].pointname}'`);
+                       // console.log("finding the length of the ")
+                    
+                        var temp = products.recordsets
+                       // console.log(temp)
+                
+                           let fileData = [] 
+                        temp.map((a)=>{
+                            fileData.push(a)
+                        })
+                  console.log(fileData[0].length)
+                  var mydata = []
+                 
+                  fileData[0].map((a)=>{
+                      mydata.push(a.slno,a.plntloc,a.pointname,a.fvalue,moment (a.timestamp).format("YYYY-MM-DD HH:mm:ss"),"}","\n");
+                  })
+                    console.log(mydata)
+                    var mydata1 = mydata.toString();
+                    console.log("2nd con",mydata1)
+                    var mydata2 = mydata1.split("},");
+                   
+                    var mydata3 = mydata2.toString();
+                    var mydata4 = mydata3.replace(",}", " ");
+                   
+                   
+                    
+
+                    
+                   
+
+                   // console.log(mydata5)
+                   
+                //     var mydata5 = mydata4.split(",,");
+                //    console.log(mydata5[0]);
+                //    console.log(mydata5[1]);
+                //    console.log(mydata5[2]);
+                //    console.log(mydata5[3]);
+                //    console.log(mydata5[4]);
+        
+                    
+
+                
+                    if(fileData.length > 0 ){
+                    fs.open(filePath+Tagname[0][i].pointname+'$'+time+'.txt', 'w', function (err, file) {
+                        if (err) throw err;
+                //         fs.writeFile(filePath+Tagname[0][i].pointname+'$'+time+'.txt',JSON.stringify(mydata) + '\n' , (err) => {
+            
+                //     // In case of a error throw err.
+                //     if (err) throw err;
+                // })
+                var logger = fs.createWriteStream(filePath+Tagname[0][i].pointname+'$'+time+'.txt', {
+                    flags: 'a' // 'a' means appending (old data will be preserved)
+                  })
+                  var writeLine = (line) => logger.write(`\n${line}`);
+                  console.log('Saved!');
+                  console.log(mydata4);
+                  writeLine(mydata4);
+                        
+                     });
+                }
+            
+                }
+        
+                //let Delete = await pool.request().query("Delete from webdata_log");
+                      
+                    //console.log(Delete)
+        
+    return Tagname1.recordsets;
+
+
+}
+
+module.exports = {
+    getOrders: getOrders,
+
+}
+
+
+
+--------------------------------------------------------------------------------------
+
+
+
+import { useState } from "react";
+import axios from "axios";
+import React from "react";
+import moment from 'moment';
+import { Button, Modal } from "react-bootstrap";
+import ReactApexChart from "react-apexcharts";
+import "reactjs-popup/dist/index.css";
+import MyVerticallyCenteredModal from "./Model/model";
+import Github from "@uiw/react-color-github";
+import { SketchPicker } from 'react-color'
+import { Link } from 'react-router-dom';
+import DateTimePicker from 'react-datetime-picker';
+import Moment from 'moment';
+import IP from './Utiltys';
+
+var tempDataPoints = [{ name: "", data: [], color: "" }];
+
+const ChartSpace = () => {
+  var selectedGroupName = "";
+
+  //UseState for spanTime
+  const [stroke, setStroke] = React.useState('smooth');
+
+  //UseState for spanTime
+  const [spanTime, setSpanTime] = React.useState(300000);
+  //UseState for SampleRate
+  const [sampleRate, setSampleRate] = React.useState(1000);
+  //UseState for ToStoptheGraph
+  const [isGraphStopped, stopGraph] = React.useState(false);
+
+  //Data to be taken when Clicking Edit Button
+  const [selectedTagData, SetSelectedTagData] = React.useState({
+    tagName: "",
+    axisIndex: 0,
+    color: "",
+    upperValue: "",
+    lowerValue: "",
+  });
+
+  //Data to be taken when Clicking Edit Button
+  const [tempselectedTagData, SetTempSelectedTagData] = React.useState({
+    color: "",
+    upperValue: "",
+    lowerValue: "",
+  });
+
+  //State variable for stop/start validation----
+  const [length, setLength] = useState(0);
+
+  //Model UseStates
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+
+  //DropDown Groups-----------------
+  const [groupsSelectTagValues, setGroupsSelectTagValues] = React.useState([]);
+
+  //isGroupSelected
+  const [isGroupSelected, setIsGroupSelected] = React.useState(false);
+
+  //SelectedGroup
+  const [selectedGroup, setSelectedGroup] = React.useState("");
+
+  //GroupTagsData---
+  const [selectedGoupTagsData, setSelectedGoupTagsData] = React.useState([]);
+  const [StartDate, setStartDate] = useState(null);
+  const [EndDate, setEndDate] = useState(null);
+  const [GroupnameError, setGroupnameError] = useState("");
+  const [startdateError, setstartdateError] = useState("");
+  const [EnddateError, setEnddateError] = useState("");
+  
+
+  
+
+  //Function 1
+  const handleShow = (value) => {
+    console.log(value);
+    SetSelectedTagData(value);
+    setShow(true);
+  };
+
+  //Function 2
+  const onSave = (value) => {
+
+    SetTempSelectedTagData({
+      color: "",
+      upperValue: "",
+      lowerValue: "",
+    })
+    console.log("Clicked");
+    console.log(value);
+
+    console.log(chartOptions.yaxis.length);
+    if(parseInt(value.upperValue) >parseInt(value.lowerValue) ){
+    setChartOptions({
+      yaxis: chartOptions.yaxis.map((axis, i) => {
+        if (value.axisIndex == i) {
+          return {
+            ...chartOptions.yaxis[i],
+            axisBorder: {
+              show: true,
+              color: value.color,
+            },
+            labels: {
+              show: true,
+              style: {
+                colors: value.color,
+              },
+            },
+            max: parseInt(value.upperValue),
+            min: parseInt(value.lowerValue),
+          };
+        } else {
+          return {
+            ...axis,
+          };
+        }
+      }),
+    });
+  } else {
+    alert("Upper value should be Greater then lower value")
+  }
+    setDataList(
+      dataList.map((list, i) => {
+        if (value.axisIndex == i) {
+          return {
+            ...list,
+            color: value.color,
+          };
+        } else {
+          return {
+            ...list,
+          };
+        }
+      })
+    );
+
+
+
+    setShow(false);
+  };
+
+  //AppexCharts Options---
+  const options = {
+    chart: {
+      //Display the toolbar / menu in the top right corner.
+      toolbar: {
+        show: true,
+        tools: {
+          download: false,
+          selection: false,
+          zoom: true,
+          zoomin: true,
+          zoomout: true,
+          pan: true,
+        },
+        autoSelected: "pan",
+        //zoom
+        //pan
+        //selection
+      },
+      zoom: {
+        enabled: true,
+        type: "xy",
+        autoScaleXaxis: false,
+        zoomedArea: {
+          fill: {
+            color: "#90CAF9",
+            opacity: 0.4,
+          },
+          stroke: {
+            color: "#0D47A1",
+            opacity: 0.4,
+            width: 1,
+          },
+        },
+      },
+
+      animations: {
+        enabled: true,
+        easing: "easein",
+        dynamicAnimation: {
+          speed: 1000,
+        },
+      },
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    markers: {
+      size: 0,
+      enabled: true,
+      /// strokeColors:["black"]
+
+    },
+    stroke: {
+      width: [2, 2],
+      curve: ["smooth", "smooth"],
+      //smooth,straight,stepline
+    },
+    title: {
+      text: "Historic Trends",
+      align: "left",
+      offsetX: 110,
+    },
+    grid: {
+      row: {
+        colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
+        opacity: 0.5,
+      },
+    },
+    tooltip: {
+      x: {
+        format: "dd/MM/yyyy HH:mm:ss",
+      },
+    },
+    xaxis: {
+      type: "datetime",
+
+      //Default TimeSpan 5 min 
+    //  range: spanTime,
+
+      labels: {
+        datetimeUTC: false,
+        // format: 'HH:mm',
+      }
+    },
+    noData: {
+      text: "Loading"
+    },
+    yaxis: {
+      seriesName: "One",
+      axisTicks: {
+        show: true,
+      },
+      axisBorder: {
+        show: true,
+        color: "Black",
+      },
+      labels: {
+        show: true,
+        style: {
+          colors: "Black",
+        },
+      },
+      // title: {
+      //   text: v,
+
+      //   style: {
+      //     color: lineColors[i],
+      //   },
+      // },
+      min: parseInt(0),
+      max: parseInt(100),
+    }
+
+  };
+
+  //UseState for ChartSeries Data
+  const [dataList, setDataList] = React.useState([{}]);
+
+  //UseState for ChartOPtions Data
+  const [chartOptions, setChartOptions] = React.useState(options);
+
+
+  //UseState for ChartOPtions Data
+  const [histDataList, setHistDataList] = React.useState([]);
+
+
+
+
+  //UseEffect
+  React.useEffect(() => {
+    if (!isGroupSelected) {
+      getGroupNames();
+    }
+  }, []);
+
+
+
+  //GetGroupNames Api Call------------------------------------------------------
+  function getGroupNames() {
+    console.log("Calling Groups Names Api")
+    axios.get('http://'+IP+'/ScadaClient/api/GroupName?GroupName=').then(res => {
+
+      var groupNamesData = res.data;
+      console.log(groupNamesData)
+      //Making 0 Index CURTRENDTITLE Default group --- toFetch values when page is rendering
+      console.log("Default Group" + groupNamesData[0].CURTRENDTITLE)
+      console.log(groupNamesData[0].CURTRENDTITLE)
+
+      selectedGroupName = groupNamesData[0].CURTRENDTITLE;
+      setSelectedGroup(groupNamesData[0].CURTRENDTITLE);
+
+
+
+      //Setting GroupSelectTagValues---to  get Groups in DropDown
+      var dropDownData = [];
+      groupNamesData.map((tag) => {
+        dropDownData.push({ value: tag.CURTRENDTITLE, label: tag.CURTRENDTITLE })
+      })
+      setGroupsSelectTagValues(dropDownData);
+
+      setIsGroupSelected(true);
+      //Fetching 0th Group Tag Data after Setting  Default group
+      // fetchTagData();
+
+    });
+  }
+
+
+  function fetchTagData() {
+    console.log("Fetching Group Tag Values ---")
+    console.log(selectedGroupName)
+    console.log(selectedGroup)
+    //http://'+IP+'/ScadaClient/api/GroupwithTrendsTimestamp?GroupName=DAS_GRP2
+    if (selectedGroup != undefined) {
+      var call = 'http://'+IP+'/ScadaClient/api/GroupwithTrendsTimestamp?GroupName=' + selectedGroupName;
+
+      console.log(call)
+      axios.get(call).then(res => {
+
+        var tagData = [];
+
+        tagData = res.data;
+        console.log("Actual List")
+        console.log(tagData)
+        setSelectedGoupTagsData(tagData);
+      
+
+      })
+    }
+  }
+
+
+  function colorConvertion(color) {
+    // console.log(color)
+    //Converting colors to hexRGB COlor
+    const [, alpha, ...colorArray] = ('00000000' + color.toString(16)).slice(-8).match(/([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})/i)
+    var hexARGBColor = `#${colorArray.join('')}${alpha}`
+    return hexARGBColor;
+  }
+
+  //........validation handling...........
+  function handleVAlidations() {
+    let validGropuname = false;
+    let validStartdate = false;
+    let validEnddate = false;
+    let validDate =  false;
+    let validDateRange=false;
+
+  
+  
+    ///..... group name.....///
+    console.log(selectedGroup)
+    if (selectedGroup ==""){
+      console.log("........entred........")
+      validGropuname=true
+    }
+  ///.......start date...///
+  console.log(StartDate)
+  if (StartDate == null ){
+    console.log("........entred........")
+    validStartdate = true
+  }
+  ///.......end date...///
+  if (EndDate == null ){
+    console.log("........entred........")
+    validEnddate = true
+  
+  }
+  //........end date should be less than start date.........////
+
+  if (StartDate > EndDate){
+    
+    validDate = true
+  }
+  
+  ///........ the diffarance beteween the end date and startdate should be Les than 90 days......./////
+  if (StartDate && StartDate !== null ){
+    console.log("enterd")
+     // To set two dates to two variables
+     var date1 = new Date(StartDate);
+     var date2 = new Date(StartDate);
+       
+     // To calculate the time difference of two dates
+     var Difference_In_Time = date2.getTime() - date1.getTime();
+       
+     // To calculate the no. of days between two dates
+     var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+     console.log( Difference_In_Days)
+     if (Difference_In_Days >= 91){
+       validDateRange= true
+     }
+  }
+  return { validGropuname, validStartdate, validEnddate, validDate ,validDateRange};
+  }
+  
+
+
+  function Historic() {
+    console.log(selectedGroup)
+
+    if  (selectedGroup!==""){
+      
+       
+        setGroupnameError("")
+      
+    }
+    if (StartDate!== null ){
+     
+        setstartdateError("")
+    
+    }
+    if (EndDate !== null ){
+    setEnddateError("")
+    }
+
+  
+    ///.............CALLING METHOD VALIDATION.....................///////////////////
+  var { validGropuname, validStartdate, validEnddate ,validDate ,validDateRange} = handleVAlidations();
+  if (validGropuname ) {
+
+    //alert("Please Select Group Name")
+      setGroupnameError( " * Please Select Group Name")
+ 
+}
+
+if (validStartdate ) {
+// alert("Please Select The Start Date")
+ 
+    setstartdateError(" * Please Select The Start Date")
+
+}
+  
+if (validEnddate ) {
+  //alert("Please Select The End Date")
+
+    setEnddateError("* Please Select The End Date")
+
+
+}
+if (validDate){
+  alert("The start date should not be greater than end date")
+}
+if (validDateRange){
+  alert("The start and end date should not be greater than 90 days")
+}
+
+
+    var startdate = Moment(StartDate).format('YYYY-MM-DDThh:mm:ss')
+    var enddate = Moment(EndDate).format('YYYY-MM-DDThh:mm:ss')
+
+    console.log(startdate)
+    console.log(enddate)
+    console.log(selectedGroup)
+
+
+    //var api = "http://'+IP+'/ScadaClient/api/FileRead?PointName=DAS_GRP2&FromDt=2021-08-31T12:51:50&ToDt=2021-08-31T12:51:50";
+   // var api = "http://"+IP+"/ScadaClient/api/FileRead?PointName="+selectedGroup+"&FromDt="+startdate+"&ToDt="+enddate;
+    var api ="https://localhost:44348/api/FileRead?PointName=DAS_GRP2&FromDt=2022-01-29T10:00:50&ToDt=2022-01-29T18:51:50"
+    console.log(api)
+            if (!validGropuname && !validStartdate && !validEnddate && !validDate && !validDateRange) {
+    axios.get(api).then(res => {
+      
+      var tagData = res.data;       
+      console.log(tagData)
+    if(tagData.length == 0){
+      alert("There is no data Present in Selected dates")
+      window.location.reload();
+    }
+
+var series = [];
+var  seriesData = [];
+selectedGoupTagsData.map((tag,i)=>{
+  series.push([])
+  seriesData.push([])
+});
+
+
+var timeSeries = [];
+tagData.map((histTag,j)=>{
+ if(selectedGoupTagsData[0].POINTNAME == histTag.pointname)
+{
+  console.log(new Date(histTag.timestamp))
+timeSeries.push(histTag.timestamp)
+}
+});
+
+
+console.log(series)
+   tagData.map((histTag,j)=>{
+    selectedGoupTagsData.map((tag,i)=>{
+        if(tag.POINTNAME == histTag.pointname)
+        {
+   
+          series[i].push(histTag)
+        }
+    })
+   });
+
+
+   series.map((tag,i)=>{
+     console.log(tag)
+   
+    timeSeries.map((time,j)=>{
+
+      console.log(time)
+    
+    seriesData[i].push({x:time ,y: tag[j] != undefined ? parseInt(tag[j].fvalue)  :0 })
+    })
+   })
+      setHistDataList(selectedGoupTagsData);
+      //Setting DataList---------------------------------------
+      var tempDataPoints = [];
+      console.log(tagData.length)
+      selectedGoupTagsData.map((tag,i) => {
+      //  console.log(series[i])
+        tempDataPoints.push(
+          {
+            name: tag.POINTNAME,
+            data: seriesData[i],
+            color: colorConvertion(tag.PENCOLOR)
+          })
+      });
+      setDataList(tempDataPoints);
+
+
+      //Setting Yaxis--------------------------------------------
+      var data = selectedGoupTagsData.map((tag) => {
+        return {
+          seriesName: tag.POINTNAME,
+          axisTicks: {
+            show: true,
+          },
+          axisBorder: {
+            show: true,
+            color: colorConvertion(tag.PENCOLOR),
+          },
+          labels: {
+            show: true,
+            style: {
+              colors: colorConvertion(tag.PENCOLOR),
+            },
+          },
+          // title: {
+          //   text: v,
+
+          //   style: {
+          //     color: lineColors[i],
+          //   },
+          // },
+          min: parseInt(tag.LOWERVALUE),
+          max: parseInt(tag.UPPERVALUE),
+        }
+      })
+
+      //Stroke------
+      var srokeWidth = [];
+      var strokeCurve = [];
+
+      //Markers-----
+      var markerColors = [];
+
+      selectedGoupTagsData.map((tag) => {
+        //SettingStroke for every tag
+        strokeCurve.push(stroke);//smooth,straight,stepline
+        srokeWidth.push(2);
+        //Settting MarkerColors
+        markerColors.push(colorConvertion(tag.PENCOLOR));
+      })
+
+      //T.EVERY IS NOT fUNCTION--
+      setChartOptions({
+        ...chartOptions,
+        stroke: {
+          width: srokeWidth,
+          curve: strokeCurve,
+          //smooth,straight,stepline
+        },
+        markers: {
+          size: 0,
+          strokeColors: markerColors,
+
+
+        },
+        yaxis: data
+      });
+
+    })
+  }
+  }
+
+
+
+
+
+  //Select Group OnSelection Group
+  const groupSelected = (e) => {
+    console.log("DropdoWNclicked");
+    var value = e.target.value;
+    console.log(value)
+    setSelectedGroup(value);
+    selectedGroupName = value;
+    fetchTagData();
+
+  };
+
+  //Select Stroke OnSelection 
+  const strokeSelected = (e) => {
+    console.log(" Stroke DropdoWNclicked");
+    var value = e.target.value;
+    console.log(value)
+    setStroke(value);
+
+    var srokeWidth = [];
+    var strokeCurve = [];
+
+    dataList.map((tag) => {
+      strokeCurve.push(value);
+      //smooth,straight,stepline
+      srokeWidth.push(2);
+    })
+
+    //T.EVERY IS NOT fUNCTION--
+    setChartOptions({
+      ...chartOptions,
+      stroke: {
+        width: srokeWidth,
+        curve: strokeCurve,
+        //smooth,straight,stepline
+      },
+
+    });
+
+
+    // selectedGroupName = value;
+    // fetchTagData();
+
+  };
+
+  // Select Marker Values
+  const MarkerSelected = (e) => {
+
+    var value = e.target.value;
+    var markerColors = []
+    console.log(value)
+
+    //T.EVERY IS NOT fUNCTION--
+    setChartOptions({
+      ...chartOptions,
+      markers: {
+        size: value,
+
+
+
+      },
+
+    });
+
+  }
+
+
+  return (
+    <div >
+      <div class="section-body">
+        <div class="container-fluid">
+          <div class="row clearfix">
+            <div class="col-lg-12">
+              <div class="d-lg-flex justify-content-between">
+                <ul class="nav nav-tabs page-header-tab">
+                  <li class="nav-item"><Link to="/AreaTrends" class="nav-link " data-toggle="tab" href="">Trends</Link></li>
+
+                  <li class="nav-item"><Link to="/HistTrends" class="nav-link active show" data-toggle="tab" href="">Historic Trends</Link></li>
+
+                  <li class="nav-item"><Link to="/TabularTrends" class="nav-link" data-toggle="tab" href="#Change_Password">Tabular Trends </Link></li>
+                  <li class="nav-item"><a href='/AdminDashboard'  >AdminDashboard</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="container-fluid" >
+        <div class="row">
+          <div class="col-md-12 col-xs-7 ">
+            <br></br>
+            <div class="card text-black bg-light mb-3">
+              {/* <div class="card-header">Graph</div> */}
+              <div class="card-body">
+                {/* Chart---------------------------------------------- */}
+                <div class="row" >
+                  <div class="col-md-12 col-xs-7 ">
+                    <div id="chart" >
+                      <div id="chart-timeline" >
+                        <ReactApexChart
+                          height={700}
+                          type="line"
+                          options={chartOptions}
+                          series={dataList}
+
+                        />
+                      </div>
+
+                      <div></div>
+                    </div>
+                  </div>
+                </div>
+                <br />
+                <div class="row">
+                  {/* Select Group DropDown-------------------------------------- */}
+                  <div class="col-md-2" style={{ textAlign: "left" }}>
+
+                    <div class="row" >
+                      <div class="col-md-6" style={{ textAlign: "right" }}>
+                        <label>Select Group: </label>
+                      </div>
+                      <div class="col-md-6" style={{ textAlign: "right" }}>
+                        <select className="custom-select" onChange={groupSelected} >
+                          <option>Select Group</option>
+                          {groupsSelectTagValues.map(name => (
+                            <option value={name.value}>
+                              {name.value}
+                            </option>
+                          ))}
+
+                        </select>
+                        <span style={{ fontWeight: "", color: "red" }}>{GroupnameError}</span>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="col-md-2" style={{ textAlign: "left" }}>
+                    <div class="row" >
+                      <div class="col-md-6" style={{ textAlign: "right" }}>
+                        <label>Start Date: </label>
+                      </div>
+                      <div class="col-md-6" style={{ textAlign: "right" }}>
+                      
+                         <DateTimePicker type="datetime-local" name="enddate"
+                          value={StartDate} placeholderText="End Date" disableClock={true} maxDate={new Date()} clearAriaLabel="Clear value"
+                          onChange={setStartDate}
+                        />
+                          <span style={{ fontWeight: "", color: "red" }}>{startdateError}</span> 
+                         </div>
+                         
+                    </div>
+                  </div>
+                  <div class="col-md-2" style={{ textAlign: "left" }}>
+                    <div class="row" style={{ marginLeft: "120px" }}>
+                      <div class="col-md-6" style={{ textAlign: "right" }}>
+                        <label>End Date: </label>
+                      </div>
+                      <div class="col-md-6" style={{ textAlign: "right" }}>
+                        <DateTimePicker type="datetime-local" name="enddate"
+                          value={EndDate} placeholderText="End Date" disableClock={true} maxDate={new Date()} clearAriaLabel="Clear value"
+                          onChange={setEndDate}
+                        />
+                          <span style={{ fontWeight: "", color: "red" }}>{EnddateError}</span>   </div>
+                    </div>
+                  </div>
+
+                  <div class="row" style={{ marginLeft: "260px" }} >
+                    <div class="col-md-6" style={{ textAlign: "right" }}>
+
+                      <button className="btn btn-primary" style={{ marginTop: "0px", color: "white", height: "35px", backgroundColor: "rgb(51, 122, 183)" }} onClick={Historic} >Submit</button>
+                    </div>
+                  </div>
+                </div>
+                <br />
+                <div></div>
+              
+                <div class="row" className="left" >
+
+                  {/* Select Stroke DropDown-------------------------------------- */}
+                  <div  >
+
+                        <label style={{marginLeft:"900px"}} >Select Stroke: </label>
+                        <select style={{marginLeft:"30px"}} onChange={strokeSelected} >
+                          <option value={'smooth'}> {'Smooth'} </option>
+                          <option value={'straight'}> {'Straight'} </option>
+                          <option value={'stepline'}> {'Stepline'} </option>
+
+                          {/* //smooth,straight,stepline */}
+                        </select>
+
+                  {/* // for marker value */}
+                        <label style={{marginLeft:"100px"}}>Markers Value: </label>
+
+                   
+                        <select style={{marginLeft:"30px"}} onChange={MarkerSelected} >
+
+                          <option value={'0'}> {'Plain'} </option>
+                          <option value={'0.9'}> {'Dots'} </option>
+
+
+                          {/* //smooth,straight,stepline */}
+                        </select>
+                    
+                  
+                  </div>
+
+
+
+                  {/* Window Span-------------------------------------- */}
+                  {/* <div class="col-md-2.5" style={{ textAlign: "right" }}>
+                    <div class="toolbar">
+                      <label>Window Span: </label> &nbsp; &nbsp;
+                      <button
+
+                        style={{ backgroundColor: spanTime == "60000" ? "green" : "grey", color: "white" }}
+                        id="one_month"
+                        onClick={() => {
+                          //setWindowSpan(60),
+                          setChartOptions({
+                            ...chartOptions,
+                            xaxis: {
+                              range: 60 * 1000,
+                            },
+                          });
+                          setSpanTime(60000);
+                        }}
+                      // className={this.state.selection === "one_month" ? "active" : ""}
+                      >   1M
+                      </button>
+                      &nbsp;
+                      <button
+                        style={{ backgroundColor: spanTime == "120000" ? "green" : "grey", color: "white" }}
+                        id="six_months"
+                        onClick={() => {
+                          setChartOptions({
+                            ...chartOptions,
+                            xaxis: {
+                              range: 120 * 1000,
+                            },
+                          });
+                          setSpanTime(120000);
+                        }}
+                      // className={this.state.selection === "six_months" ? "active" : ""}
+                      >
+                        2M
+                      </button>
+                      &nbsp;
+                      <button
+                        style={{ backgroundColor: spanTime == "180000" ? "green" : "grey", color: "white" }}
+                        id="one_year"
+                        onClick={() => {
+
+                          setChartOptions({
+                            ...chartOptions,
+                            xaxis: {
+                              range: 180 * 1000,
+                            },
+                          });
+                          setSpanTime(180000);
+                        }
+
+                        }
+                      // className={this.state.selection === "one_year" ? "active" : ""}
+                      >
+                        3M
+                      </button>
+                      &nbsp;
+                      <button
+                        id="ytd"
+                        style={{ backgroundColor: spanTime == "300000" ? "green" : "grey", color: "white" }}
+                        onClick={() => {
+                          setChartOptions({
+                            ...chartOptions,
+                            xaxis: {
+                              range: 300 * 1000,
+                            },
+                          });
+                          setSpanTime(300000);
+                        }
+                        }
+                      // className={this.state.selection === "ytd" ? "active" : ""}
+                      >
+                        5M
+                      </button>
+                    </div>
+                  </div> */}
+
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* //Table ----------------------------------------------------------------------------------------------------------- */}
+        <div class="row">
+          <div class="col-md-8">
+
+            <table class="table table-bordered" color="black" >
+              <th scope="col" style={{ fontWeight: "bold" }}>Name</th>
+              <th scope="col" style={{ fontWeight: "bold" }}>HigherValue</th>
+              <th scope="col" style={{ fontWeight: "bold" }}>LowerValue</th>
+              <th scope="col" style={{ fontWeight: "bold" }}>FValue</th>
+              <th scope="col" style={{ fontWeight: "bold" }}> LastUpdated</th>
+              <th scope="col" style={{ fontWeight: "bold" }}>Edit</th>
+
+
+              {
+                histDataList != undefined ? histDataList.map((tag, i) => {
+
+                  var list = dataList[i];
+                  // console.log(chartOptions.yaxis[i]?.max)
+                  // console.log(chartOptions.yaxis[i]?.min)
+
+                  return (
+                    <tr>
+                      <td style={{ color: list?.color }}>{tag.POINTNAME}</td>
+                      <td style={{ color: list?.color }}>
+                        {chartOptions.yaxis[i]?.max}
+                      </td>
+                      <td style={{ color: list?.color }}>
+                        {chartOptions.yaxis[i]?.min}
+                      </td>
+                      <td style={{ color: list?.color }}>
+                        {tag.fvalue}
+                      </td>
+                      <td style={{ color: list?.color }}>
+                        {tag.timeStampTime}
+                      </td>
+                      <td>
+                        <button
+                          onClick={() =>
+                            handleShow({
+                              tagName: tag.POINTNAME,
+                              axisIndex: i,
+                              color: list?.color,
+                              upperValue: chartOptions.yaxis[i]?.max,
+                              lowerValue: chartOptions.yaxis[i]?.min,
+                            })
+                          }
+                          style={{ background: list?.color }}
+                          className="btn btn-secondary btn-sm"
+                        >
+                          Edit
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                }) : <div></div>}
+            </table>
+          </div>
+        </div>
+
+        <div>
+          <Modal
+            show={show}
+            //   onHide={this.props.onHide}
+            animation={false}
+            fade={true}
+            backdrop="false"
+            style={{ marginLeft: "700px", marginTop: "200px" }}
+
+            size="small"
+            centered
+          >
+            <Modal.Header >
+              <Modal.Title>
+                {" "}
+                {selectedTagData["axisIndex"] + 1}{". "}
+                {selectedTagData["tagName"]}
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <div class="form-group">
+                UpperValue
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder={selectedTagData["upperValue"]}
+                  onChange={(e) => {
+                    console.log(e.target.value)
+                    SetTempSelectedTagData({
+                      upperValue: e.target.value,
+                      lowerValue: tempselectedTagData.lowerValue ? tempselectedTagData.lowerValue : selectedTagData["lowerValue"],
+                      color: tempselectedTagData.color ? tempselectedTagData.color : selectedTagData["color"]
+                    })
+                  }}
+                />
+              </div>
+              <div class="form-group">
+                LowerValue
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder={selectedTagData["lowerValue"]}
+                  onChange={(e) => {
+                    console.log(e.target.value)
+                    SetTempSelectedTagData({
+                      upperValue: tempselectedTagData.upperValue ? tempselectedTagData.upperValue : selectedTagData["upperValue"],
+                      lowerValue: e.target.value,
+                      color: tempselectedTagData.color ? tempselectedTagData.color : selectedTagData["color"]
+                    })
+                  }}
+                />
+              </div>
+              <div class="row">
+                <label for="inputEmail">Select Pen Color : </label> &nbsp; &nbsp;
+                {/* <Button style={{background:this.state.color}} onClick={this.props.onHide}>
+          
+          </Button> */}
+                {/* npm i @uiw/react-color-sketch */}
+                {/* <Sketch
+              style={{ marginLeft: 20 }}
+              color={this.props.tagData["color"]}
+              onChange={(color) => {
+                this.setState({ color: color.hex });
+              }}
+            /> */}
+                {/* npm i @uiw/react-color-github */}
+                <SketchPicker style={{ background: selectedTagData["color"] }}
+                  color={tempselectedTagData.color ? tempselectedTagData.color : selectedTagData["color"]}
+                  onChange={(color) => {
+                    console.log(color.hex)
+                    console.log(tempselectedTagData)
+
+                    SetTempSelectedTagData({
+                      upperValue: tempselectedTagData.upperValue ? tempselectedTagData.upperValue : selectedTagData["upperValue"],
+                      lowerValue: tempselectedTagData.lowerValue ? tempselectedTagData.lowerValue : selectedTagData["lowerValue"],
+                      color: color.hex
+                    })
+                  }}
+                />
+              </div>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary"
+                onClick={handleClose}>
+                Close
+              </Button>
+              <Button variant="primary"
+                onClick={() => onSave({
+                  tagName: selectedTagData['tagName'],
+                  axisIndex: selectedTagData['axisIndex'],
+                  color: tempselectedTagData.color ? tempselectedTagData.color : selectedTagData["color"],
+                  upperValue: tempselectedTagData.upperValue ? tempselectedTagData.upperValue : selectedTagData["upperValue"],
+                  lowerValue: tempselectedTagData.lowerValue ? tempselectedTagData.lowerValue : selectedTagData["lowerValue"],
+                })
+
+                }
+              >
+                Save Changes
+              </Button>
+            </Modal.Footer>
+          </Modal>
+
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ChartSpace;
