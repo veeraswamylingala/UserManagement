@@ -70,3 +70,20 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+//////
+[12:54 PM, 4/28/2022] Raj Unical: <add key="FileReadingPath" value="G:\TestFolder"/>
+[12:54 PM, 4/28/2022] Raj Unical: web.config
+[12:54 PM, 4/28/2022] Raj Unical: I changed for testing purpose....
+[12:54 PM, 4/28/2022] Raj Unical: https://localhost:44348/api/FileRead?TagName=Dtms_0011&FromDt=2022-03-25T10:00:00&ToDt=2022-03-27T12:00:00
+[12:54 PM, 4/28/2022] Raj Unical: I changed this url, now we should pass TagName
+[12:54 PM, 4/28/2022] Raj Unical: before we used to pass GroupName
+[12:54 PM, 4/28/2022] Raj Unical: For every tag name in group you have to pass this...
+[12:54 PM, 4/28/2022] Raj Unical: pls change the code accordingly..
+[12:54 PM, 4/28/2022] Raj Unical: https://localhost:44348/api/GroupName?GroupName=DAS_GRP2
+[12:54 PM, 4/28/2022] Raj Unical: almost all cases completed.
+[12:54 PM, 4/28/2022] Raj Unical: we need to test few more cases.
+[12:54 PM, 4/28/2022] Raj Unical: Rajkumar, inform rajesh sir that we should select shift wise only....
+
+
+
